@@ -1,0 +1,20 @@
+﻿<input id="dtboxTest" class="easyui-datebox" />
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Test/GetData/',
+            type: 'post',
+            success: function (data) {
+
+                $('#dtboxTest').datebox('setValue', data.date);
+
+            }
+        });
+
+    });
+
+</script>

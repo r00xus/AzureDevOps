@@ -1,0 +1,6 @@
+﻿SELECT
+  *
+FROM
+  WorkItems
+WHERE
+  [System.Id] IN (@id)

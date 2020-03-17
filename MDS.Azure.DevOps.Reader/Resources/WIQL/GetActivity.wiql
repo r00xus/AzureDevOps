@@ -1,0 +1,10 @@
+﻿SELECT
+  *
+FROM
+  WorkItems
+WHERE
+  [Team Project] = 'UIS' AND
+  [Work Item Type] = 'Activity' AND
+  [Assigned To] IN (@persons) AND
+  [Target Date] >= '@dateFrom' AND
+  [Target Date] <= '@dateTo'

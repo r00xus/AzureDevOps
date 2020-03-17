@@ -1,0 +1,8 @@
+﻿SELECT
+	*
+FROM
+	WorkItemLinks
+WHERE	
+	[Source].[System.WorkItemType] = 'Activity' AND
+	[Target].[System.WorkItemType] = 'Task' AND
+	[Source].[System.Id] IN (@activityId)

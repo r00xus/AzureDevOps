@@ -1,0 +1,29 @@
+﻿<div id="layout" class="easyui-layout" fit="true">
+    <div region="center" border="false">
+        <div class="easyui-tabs" fit="true" border="false">
+            <div title="Сотрудники" style="padding:5px;">
+                <div id="tbarEmployees" style="padding:3px;">
+                    <a id="btnCreateEmployee" href="#" plain="true">Добавить</a>
+                    <a id="btnEditEmployee" href="#" plain="true">Изменить</a>
+                    <a id="btnDeleteEmployee" href="#" plain="true">Удалить</a>
+                </div>
+                <table id="dtgridEmployees" fit="true"></table>
+            </div>
+            <div title="Исключения из графика" style="padding:5px;">
+                <div id="tbarExclude" style="padding:3px;">
+                    <a id="btnCreateExclude" href="#" plain="true">Добавить</a>
+                    <a id="btnDeleteExclude" href="#" plain="true">Удалить</a>
+                </div>
+                <table id="dtgridExclude" fit="true"></table>
+            </div>
+        </div>
+    </div>
+    <div region="south" height="auto" style="padding:10px; text-align:right;">
+        <a id="btnOk" href="#" class="easyui-linkbutton" style="width:90px;">Ок</a>
+        <a id="btnCancel" href="#" class="easyui-linkbutton" style="width:90px;">Отмена</a>
+    </div>
+</div>
+
+<div id="panelEmployee" style="width:600px; height:600px;">
+    <partial name="~/Views/Settings/_panelEmployee.cshtml" />
+</div>
