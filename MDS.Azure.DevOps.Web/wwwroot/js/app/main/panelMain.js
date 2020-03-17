@@ -58,6 +58,10 @@
 
             var that = this;
 
+            that.dboxDateFrom = $('#dboxDateFrom', that.element);
+
+            that.dboxDateTo = $('#dboxDateTo', that.element);
+
             that.dlistEmployees = $('#dlistEmployees', that.element);
             that.dlistEmployees.datalist({
                 url: '/Settings/Employees/',
@@ -76,12 +80,57 @@
                     that._onBtnSettingsClick();
                 }
             });
+
+            that.btnRefresh = $('#btnRefresh', that.element);
+            that.btnRefresh.linkbutton({
+                onClick: function () {
+                    that._onBtnRefreshClick();
+                }
+            });
         },
 
         _onBtnSettingsClick: function () {
             this.panelSettings.panelSettings('load');
             this.panelSettings.window('center');
             this.panelSettings.window('open');
+        },
+
+        _onBtnRefreshClick: function () {
+
+            var that = this;
+
+            var params = that._getParams();
+
+            $.ajax({
+                url: '/Home/DevOpsReport/',
+                data: params,
+                success: function (data) {
+
+                    that.dtgridActivity.datagrid('loadData', data.activity);
+
+                }
+            });
+        },
+
+        _getParams: function () {
+
+            var that = this;
+
+            var result = {
+                employees: [],
+                start: that.dboxDateFrom.datebox('getValue'),
+                end: that.dboxDateTo.datebox('getValue')
+            };
+
+            var employees = that.dlistEmployees.datalist('getChecked');
+
+            $.each(employees, function (index, employee) {
+
+                result.employees.push(employee.value);
+
+            });
+
+            return result;
         }
 
     });

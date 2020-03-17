@@ -1,36 +1,28 @@
-﻿using System.IO;
-using System.Linq;
-using MDS.Azure.DevOps.Core;
+﻿using System.Linq;
+using MDS.Azure.DevOps.Core.Models.Config;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDS.Azure.DevOps.Web.Controllers
 {
-    public class SettingsController : Controller
+    public class SettingsController : BaseController
     {
-        private string _fileName { get { return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "appdata", "config.json"); } }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult Load()
         {
-            var config = AppConfig.Load(_fileName);
+            var config = GetConfig();
 
             return Json(config);
         }
 
-        public IActionResult Save(AppConfig config)
+        public IActionResult Save(ConfigBase config)
         {
-            config.Save(_fileName);
+            config.Save();
 
             return StatusCode(200);
         }
 
         public IActionResult Employees()
         {
-            var config = AppConfig.Load(_fileName);
+            var config = GetConfig();
 
             var employees = config.Employees
                 .Select(x => new { value = x.Name, text = x.NameShort }).ToList();
