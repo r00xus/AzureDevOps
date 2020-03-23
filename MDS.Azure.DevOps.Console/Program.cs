@@ -105,7 +105,7 @@ namespace MDS.Azure.DevOps.Console
                 reportItem.Company = item.Task.mdsTaskActive;
                 reportItem.CompletedWork = item.CompletedWork;
                 if (reportItem.TargetDate != null)
-                    reportItem.Month = ((DateTime)item.TargetDate).ToString("MMMM", CultureInfo.CreateSpecificCulture("ru-RU"));
+                    reportItem.Month = ((DateTime)item.TargetDate).Month.ToString("00");
                 reportItem.TaskState = item.Task.State;
                 reportItem.AreaPath = item.AreaPath;
 
@@ -177,6 +177,11 @@ namespace MDS.Azure.DevOps.Console
                 item.AreaPath = task.Key.AreaPath;
                 item.Month = task.Key.Month;
                 item.Company = task.Key.Company;
+                if (string.IsNullOrWhiteSpace(item.Company))
+                    item.ServiceType = "1";
+                else
+                    item.ServiceType = "3";
+
 
                 TaskReport.Add(item);
             }
