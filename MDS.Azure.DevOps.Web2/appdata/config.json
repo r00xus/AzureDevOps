@@ -1,0 +1,212 @@
+{
+  "employees": [
+    {
+      "name": "Рунчев Руслан Павлович",
+      "nameShort": "Рунчев Р.П.",
+      "position": "менеджер",
+      "specialDays": [],
+      "customDays": [
+        {
+          "dayOfWeek": "Monday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Tuesday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Wednesday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Thursday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Friday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Saturday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": 7,
+          "hours": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Ветров Олег Алексеевич",
+      "nameShort": "Ветров О.А.",
+      "position": "ведущий инженер-программист",
+      "specialDays": [],
+      "customDays": []
+    },
+    {
+      "name": "Железняк Владислав Александрович",
+      "nameShort": "Железняк В.А.",
+      "position": "инженер-программист",
+      "specialDays": [],
+      "customDays": []
+    },
+    {
+      "name": "Лукавнев Алексей Николаевич",
+      "nameShort": "Лукавнев А.Н.",
+      "position": "старший инженер-программист",
+      "specialDays": [],
+      "customDays": [
+        {
+          "dayOfWeek": "Sunday",
+          "hours": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Маслов Андрей Иванович",
+      "nameShort": "Маслов А.И.",
+      "position": "ведущий инженер-программист",
+      "specialDays": [
+        {
+          "description": "Рождество отработка за перенос",
+          "start": "2020-01-11T00:00:00",
+          "end": "2020-01-11T00:00:00",
+          "hours": 0.0
+        }
+      ],
+      "customDays": [
+        {
+          "dayOfWeek": "Monday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Tuesday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Wednesday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Thursday",
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": "Friday",
+          "hours": 7.0
+        }
+      ]
+    },
+    {
+      "name": "Писецкий Александр Васильевич",
+      "nameShort": "Писецкий А.В.",
+      "position": "старший инженер-программист",
+      "specialDays": [
+        {
+          "description": "Рабочий день",
+          "start": "2020-01-06T00:00:00",
+          "end": "2020-01-06T00:00:00",
+          "hours": 7.0
+        },
+        {
+          "description": "Рождество отработка за перенос",
+          "start": "2020-01-11T00:00:00",
+          "end": "2020-01-11T00:00:00",
+          "hours": 0.0
+        }
+      ],
+      "customDays": []
+    },
+    {
+      "name": "Филиппов Алексей Александрович",
+      "nameShort": "Филиппов А.А.",
+      "position": "ведущий инженер-программист",
+      "specialDays": [
+        {
+          "description": "Рабочий день",
+          "start": "2020-01-06T00:00:00",
+          "end": "2020-01-06T00:00:00",
+          "hours": 7.0
+        },
+        {
+          "description": "Выходной",
+          "start": "2020-01-11T00:00:00",
+          "end": "2020-01-11T00:00:00",
+          "hours": 0.0
+        },
+        {
+          "description": "Больничный",
+          "start": "2020-02-11T00:00:00",
+          "end": "2020-02-17T00:00:00",
+          "hours": 0.0
+        },
+        {
+          "description": "Отпуск",
+          "start": "2020-03-20T00:00:00",
+          "end": "2020-04-03T00:00:00",
+          "hours": 0.0
+        }
+      ],
+      "customDays": []
+    },
+    {
+      "name": "Царегородцева Мария Сергеевна",
+      "nameShort": "Царегородцева М.С.",
+      "position": "инженер-программист",
+      "specialDays": [],
+      "customDays": []
+    },
+    {
+      "name": "Мирный Владимир Валерьевич",
+      "nameShort": "Мирный В.В.",
+      "position": "ведущий инженер-программист",
+      "specialDays": [],
+      "customDays": []
+    },
+    {
+      "name": "Штыка Максим Васильевич",
+      "nameShort": "Штыка М.В.",
+      "position": "старший инженер-программист",
+      "specialDays": [],
+      "customDays": []
+    }
+  ],
+  "specialDays": [
+    {
+      "description": "Новый год",
+      "start": "2020-01-01T00:00:00",
+      "end": "2020-01-01T00:00:00",
+      "hours": 0.0
+    },
+    {
+      "description": "Рождество перенос",
+      "start": "2020-01-06T00:00:00",
+      "end": "2020-01-06T00:00:00",
+      "hours": 0.0
+    },
+    {
+      "description": "Рождество",
+      "start": "2020-01-07T00:00:00",
+      "end": "2020-01-07T00:00:00",
+      "hours": 0.0
+    },
+    {
+      "description": "Рождество отработка за перенос",
+      "start": "2020-01-11T00:00:00",
+      "end": "2020-01-11T00:00:00",
+      "hours": 7.0
+    },
+    {
+      "description": "8 марта перенос",
+      "start": "2020-03-09T00:00:00",
+      "end": "2020-03-09T00:00:00",
+      "hours": 0.0
+    },
+    {
+      "description": "Пасха перенос",
+      "start": "2020-04-20T00:00:00",
+      "end": "2020-04-20T00:00:00",
+      "hours": 0.0
+    }
+  ]
+}

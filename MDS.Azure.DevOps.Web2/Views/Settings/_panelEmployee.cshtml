@@ -1,0 +1,28 @@
+﻿<div id="layout" class="easyui-layout" fit="true">
+    <div region="north" height="auto" border="false" style="padding:10px;">
+        <div>
+            <input id="tboxName" labelWidth="100" style="width:100%;" />
+        </div>
+        <div style="margin-top:10px;">
+            <input id="cboxPosition" labelWidth="100" style="width:100%;" />
+        </div>
+    </div>
+    <div region="center" border="false">
+        <div id="tabSchedual" class="easyui-tabs" fit="true" tabPosition="top">
+            <div title="Исключения из графика" style="padding:5px;">
+                <div id="tbarExclude" style="padding:3px;">
+                    <a id="btnCreateExclude" href="#" plain="true">Добавить</a>
+                    <a id="btnDeleteExclude" href="#" plain="true">Удалить</a>
+                </div>
+                <table id="dtgridExclude" fit="true"></table>
+            </div>
+            <div title="Нестандартная неделя" style="padding:5px;">
+                <table id="dtgridWeek" fit="true"></table>
+            </div>
+        </div>
+    </div>
+    <div region="south" height="auto" border="false" style="padding:10px; text-align:right;">
+        <a id="btnOk" href="#" class="easyui-linkbutton" style="width:90px;">OK</a>
+        <a id="btnCancel" href="#" class="easyui-linkbutton" style="width:90px;">Отмена</a>
+    </div>
+</div>

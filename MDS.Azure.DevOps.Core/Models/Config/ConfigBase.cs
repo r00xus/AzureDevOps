@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace MDS.Azure.DevOps.Core.Models.Config
 {
+    [DataContract]
     public class ConfigBase
     {
+        [DataMember(Name= "employees")]
         public List<Employee> Employees { get; set; } = new List<Employee>();
 
+        [DataMember(Name = "specialDays")]
         public List<SpecialDay> SpecialDays { get; set; } = new List<SpecialDay>();
 
         protected virtual string FilePath { get; }

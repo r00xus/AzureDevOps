@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MDS.Azure.DevOps.Core.Models.Config
 {
+    [DataContract]
     public class Employee
     {
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        [DataMember(Name = "nameShort")]
         public string NameShort
         {
             get
@@ -30,10 +34,13 @@ namespace MDS.Azure.DevOps.Core.Models.Config
             }
         }
 
+        [DataMember(Name = "position")]
         public string Position { get; set; }
 
+        [DataMember(Name = "specialDays")]
         public List<SpecialDay> SpecialDays { get; set; } = new List<SpecialDay>();
 
+        [DataMember(Name = "customDays")]
         public List<CustomDay> CustomDays { get; set; } = new List<CustomDay>();
     }
 }

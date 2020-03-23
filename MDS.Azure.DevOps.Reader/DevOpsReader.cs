@@ -67,6 +67,8 @@ namespace MDS.Azure.DevOps.Reader
 
         private void GetTasks(List<WIActivityDto> activites)
         {
+            if (activites.Count == 0) return;
+
             var queryStr = WIQL.GetTaskLinks.Replace("@activityId", string.Join(",", activites.Select(x => x.Id)));
 
             Query wiQuery = new Query(_workItemStore, queryStr);
