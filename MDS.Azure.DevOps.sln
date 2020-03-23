@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDS.Azure.DevOps.Web", "MDS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDS.Azure.DevOps.Core", "MDS.Azure.DevOps.Core\MDS.Azure.DevOps.Core.csproj", "{706B284E-8367-4B59-B8D1-74261A40ABD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDS.Azure.DevOps.Reader.NetCore", "MDS.Azure.DevOps.Reader.NetCore\MDS.Azure.DevOps.Reader.NetCore.csproj", "{6F1F1E8A-C7B8-437D-AAEA-336F7F3C52A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{706B284E-8367-4B59-B8D1-74261A40ABD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706B284E-8367-4B59-B8D1-74261A40ABD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706B284E-8367-4B59-B8D1-74261A40ABD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F1F1E8A-C7B8-437D-AAEA-336F7F3C52A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F1F1E8A-C7B8-437D-AAEA-336F7F3C52A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F1F1E8A-C7B8-437D-AAEA-336F7F3C52A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F1F1E8A-C7B8-437D-AAEA-336F7F3C52A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
