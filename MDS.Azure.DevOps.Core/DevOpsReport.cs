@@ -29,6 +29,7 @@ namespace MDS.Azure.DevOps.Core
 
             GetDataFromDevOps();
             CreateActivityReport();
+            CreateWorkingTimeDiffReport();
         }
 
         private DevOpsReportParams _params { get; set; }
@@ -54,7 +55,7 @@ namespace MDS.Azure.DevOps.Core
             Activities = reader.GetActivities(_params.Employees, _params.Start, _params.End);
         }
 
-        public void CreateActivityReport()
+        private void CreateActivityReport()
         {
             ActivityReport = new List<RIActivity>();
 
@@ -87,5 +88,46 @@ namespace MDS.Azure.DevOps.Core
 
             ActivityReport = ActivityReport.OrderByDescending(x => x.ActivityId).ToList();
         }
+
+        private void CreateWorkingTimeDiffReport()
+        {
+            WorkingTimeDiffReport = new List<RIWorkingTimeDiff>();
+
+            foreach (var employee in _params.Employees)
+            {
+                var schedual = new Schedual(new SchedualParams
+                {
+                    Name = employee,
+                    Start = _params.Start,
+                    End = _params.End
+                }, _config);
+
+                foreach (var day in schedual.Days)
+                {
+                    var item = new RIWorkingTimeDiff();
+
+                    item.EmployeeName = employee;
+                    item.Day = day.Date;
+                    item.SchedualeHours = day.Hours;
+                    item.Description = day.Description;
+                    item.DevOpsHours = Activities
+                        .Where(x => x.AssigndTo == employee && x.TargetDate?.Date == item.Day).Sum(x => x.CompletedWork);
+                    item.Diff = item.DevOpsHours - item.SchedualeHours;
+
+                    var culture = new CultureInfo("ru-RU");
+                    item.DayOfWeek = culture.DateTimeFormat.GetDayName(item.Day.DayOfWeek);
+
+                    if (item.Diff != 0)
+                    {
+                        WorkingTimeDiffReport.Add(item);
+                    }
+                }
+            }
+
+            WorkingTimeDiffReport = WorkingTimeDiffReport
+                .OrderBy(x => x.EmployeeName)
+                .ThenByDescending(x => x.Day).ToList();
+        }
     }
 }
+

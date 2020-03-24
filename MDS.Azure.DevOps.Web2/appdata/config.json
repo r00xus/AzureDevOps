@@ -5,36 +5,7 @@
       "nameShort": "Рунчев Р.П.",
       "position": "менеджер",
       "specialDays": [],
-      "customDays": [
-        {
-          "dayOfWeek": "Monday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": "Tuesday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": "Wednesday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": "Thursday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": "Friday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": "Saturday",
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": 7,
-          "hours": 0.0
-        }
-      ]
+      "customDays": []
     },
     {
       "name": "Ветров Олег Алексеевич",
@@ -57,7 +28,7 @@
       "specialDays": [],
       "customDays": [
         {
-          "dayOfWeek": "Sunday",
+          "dayOfWeek": 0,
           "hours": 0.0
         }
       ]
@@ -76,24 +47,32 @@
       ],
       "customDays": [
         {
-          "dayOfWeek": "Monday",
-          "hours": 0.0
+          "dayOfWeek": 1,
+          "hours": 8.25
         },
         {
-          "dayOfWeek": "Tuesday",
-          "hours": 0.0
+          "dayOfWeek": 2,
+          "hours": 8.25
         },
         {
-          "dayOfWeek": "Wednesday",
-          "hours": 0.0
+          "dayOfWeek": 3,
+          "hours": 8.25
         },
         {
-          "dayOfWeek": "Thursday",
-          "hours": 0.0
+          "dayOfWeek": 4,
+          "hours": 8.25
         },
         {
-          "dayOfWeek": "Friday",
+          "dayOfWeek": 5,
           "hours": 7.0
+        },
+        {
+          "dayOfWeek": 6,
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": 7,
+          "hours": 0.0
         }
       ]
     },
@@ -147,7 +126,20 @@
           "hours": 0.0
         }
       ],
-      "customDays": []
+      "customDays": [
+        {
+          "dayOfWeek": 3,
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": 6,
+          "hours": 0.0
+        },
+        {
+          "dayOfWeek": 7,
+          "hours": 0.0
+        }
+      ]
     },
     {
       "name": "Царегородцева Мария Сергеевна",

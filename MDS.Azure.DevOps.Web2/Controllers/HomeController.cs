@@ -20,10 +20,10 @@ namespace MDS.Azure.DevOps.Web2.Controllers
             {
                 Data = new
                 {
-                    activity = report.ActivityReport
+                    activity = report.ActivityReport,
+                    diff = report.WorkingTimeDiffReport
                 }
             };
         }
-
     }
 }

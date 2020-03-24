@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MDS.Azure.DevOps.Console
+namespace MDS.Azure.DevOps.Core
 {
     public class Day
     {

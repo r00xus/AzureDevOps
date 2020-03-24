@@ -12,7 +12,7 @@ namespace MDS.Azure.DevOps.Core.Models.Config
     [DataContract]
     public class CustomDay
     {
-        [JsonConverter(typeof(StringEnumConverter)), DataMember(Name = "dayOfWeek")]
+        [DataMember(Name = "dayOfWeek")]
         public DayOfWeek DayOfWeek { get; set; }
         
         [DataMember(Name = "hours")]

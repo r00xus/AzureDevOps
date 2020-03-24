@@ -287,6 +287,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="CustomModelBinders\DecimalModelBinder.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -811,6 +812,7 @@
     <Content Include="js\app\utils.js" />
     <Content Include="js\lib\easyui\easyloader.js" />
     <Content Include="js\lib\easyui\extensions\datagrid-cellediting.js" />
+    <Content Include="js\lib\easyui\extensions\datagrid-filter.js" />
     <Content Include="js\lib\easyui\jquery.easyui.min.js" />
     <Content Include="js\lib\easyui\jquery.easyui.mobile.js" />
     <Content Include="js\lib\easyui\locale\easyui-lang-af.js" />
@@ -909,6 +911,7 @@
     <Content Include="js\lib\easyui\src\jquery.slider.js" />
     <Content Include="js\lib\easyui\src\jquery.tabs.js" />
     <Content Include="js\lib\easyui\src\jquery.window.js" />
+    <Content Include="js\lib\jquery.cookie\jquery.cookie.js" />
     <Content Include="js\lib\jqueryui\jquery-ui.js" />
     <Content Include="css\easyui\themes\material\images\Thumbs.db" />
     <Content Include="css\easyui\themes\material-teal\images\Thumbs.db" />
