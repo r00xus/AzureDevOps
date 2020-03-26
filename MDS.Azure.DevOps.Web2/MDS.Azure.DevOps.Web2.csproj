@@ -916,6 +916,7 @@
     <Content Include="css\easyui\themes\material\images\Thumbs.db" />
     <Content Include="css\easyui\themes\material-teal\images\Thumbs.db" />
     <Content Include="appdata\config.json" />
+    <Content Include="appdata\taskEstimate.json" />
     <None Include="js\lib\jquery\jquery-1.10.2.intellisense.js">
       <DependentUpon>jquery-1.10.2.js</DependentUpon>
     </None>
@@ -997,6 +998,10 @@
     <ProjectReference Include="..\MDS.Azure.DevOps.Core\MDS.Azure.DevOps.Core.csproj">
       <Project>{706b284e-8367-4b59-b8d1-74261a40abd5}</Project>
       <Name>MDS.Azure.DevOps.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDS.Azure.DevOps.Excel\MDS.Azure.DevOps.Excel.csproj">
+      <Project>{C67B9889-FF85-4D84-9D62-F7D1CB79401A}</Project>
+      <Name>MDS.Azure.DevOps.Excel</Name>
     </ProjectReference>
     <ProjectReference Include="..\MDS.Azure.DevOps.Reader\MDS.Azure.DevOps.Reader.csproj">
       <Project>{3A464EC6-87AA-4A8B-850A-16B47841AF6D}</Project>

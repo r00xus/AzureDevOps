@@ -176,6 +176,13 @@
                     that._onBtnRefreshClick();
                 }
             });
+
+            that.btnExcel = $('#btnExcel', that.element);
+            that.btnExcel.linkbutton({
+                onClick: function () {
+                    that._onBtnExcelClick();
+                }
+            });
         },
 
         _onBtnSettingsClick: function () {
@@ -285,6 +292,30 @@
             params = JSON.parse($.cookie('params'));
 
             this._setParams(params);
+        },
+
+        _onBtnExcelClick: function () {
+
+            var that = this;
+
+            that.panelReports.panel('loading', 'Формирование Excel файла...');
+
+            var params = that._getParams();
+
+            $.ajax({
+                url: '/Home/CreateExcel',
+                type: 'post',
+                data: {
+                    params: params
+                }
+            }).done(function (data) {
+
+                var result = JSON.parse(data);
+
+                that.panelReports.panel('loaded');
+
+                window.location.href = '/Home/GetExcel?key=' + result.key;
+            });
         }
 
     });

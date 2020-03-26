@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace MDS.Azure.DevOps.Core.Models.Config
 {
@@ -25,5 +26,8 @@ namespace MDS.Azure.DevOps.Core.Models.Config
 
         [DataMember(Name = "taskId")]
         public int? TaskId { get; set; }
+
+        [DataMember(Name = "date")]
+        public DateTime Date { get; set; }
     }
 }

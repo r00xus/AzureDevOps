@@ -1,4 +1,5 @@
-﻿using MDS.Azure.DevOps.Core.Models.Config;
+﻿using MDS.Azure.DevOps.Core.Models;
+using MDS.Azure.DevOps.Core.Models.Config;
 using MDS.Azure.DevOps.Models;
 using MDS.Azure.DevOps.Reader;
 using MDS.Azure.DevOps.Reader.Models;
@@ -22,19 +23,24 @@ namespace MDS.Azure.DevOps.Core
 
     public class DevOpsReport
     {
-        public DevOpsReport(DevOpsReportParams @params, ConfigBase config)
+        public DevOpsReport(DevOpsReportParams @params, ConfigBase config, List<TaskEstimate> taskEstimates)
         {
             _params = @params;
             _config = config;
+            _taskEstimates = taskEstimates;
 
             GetDataFromDevOps();
             CreateActivityReport();
+            CreateTaskReport();
             CreateWorkingTimeDiffReport();
+            CreateTaskEstimateReport();
         }
 
         private DevOpsReportParams _params { get; set; }
 
         private ConfigBase _config { get; set; }
+
+        private List<TaskEstimate> _taskEstimates { get; set; }
 
         public List<WIActivityDto> Activities { get; set; }
 
@@ -45,6 +51,8 @@ namespace MDS.Azure.DevOps.Core
         public List<RIWorkingTimeDiff> WorkingTimeDiffReport { get; set; }
 
         public List<RITask> TaskReport { get; set; }
+
+        public List<RITaskEstimate> TaskEstimateReport { get; set; }
 
         const string AzureUrl = "https://dev.azure.com/mihvsts/";
 
@@ -89,6 +97,51 @@ namespace MDS.Azure.DevOps.Core
             ActivityReport = ActivityReport.OrderByDescending(x => x.ActivityId).ToList();
         }
 
+        private void CreateTaskReport()
+        {
+            TaskReport = new List<RITask>();
+
+            var tasks = ActivityReport.GroupBy(x => new
+            {
+                x.TaskId,
+                x.TaskName,
+                x.AssigndTo,
+                x.Position,
+                x.StartDate,
+                x.FinishDate,
+                x.ServiceName,
+                x.Technology,
+                x.TaskState,
+                x.Company,
+                x.WorkType,
+                x.AreaPath,
+                x.Month
+
+            });
+
+            foreach (var task in tasks)
+            {
+                var item = new RITask();
+
+                item.TaskId = task.Key.TaskId;
+                item.TaskName = task.Key.TaskName;
+                item.AssigndTo = task.Key.AssigndTo;
+                item.Position = task.Key.Position;
+                item.StartDate = task.Key.StartDate;
+                item.FinishDate = task.Key.FinishDate;
+                item.ServiceName = task.Key.ServiceName;
+                item.Technology = task.Key.Technology;
+                item.CompletedWork = task.Sum(x => x.CompletedWork);
+                item.TaskState = task.Key.TaskState;
+                item.WorkType = task.Key.WorkType;
+                item.AreaPath = task.Key.AreaPath;
+                item.Month = task.Key.Month;
+                item.Company = task.Key.Company;
+
+                TaskReport.Add(item);
+            }
+        }
+
         private void CreateWorkingTimeDiffReport()
         {
             WorkingTimeDiffReport = new List<RIWorkingTimeDiff>();
@@ -127,6 +180,38 @@ namespace MDS.Azure.DevOps.Core
             WorkingTimeDiffReport = WorkingTimeDiffReport
                 .OrderBy(x => x.EmployeeName)
                 .ThenByDescending(x => x.Day).ToList();
+        }
+
+        private void CreateTaskEstimateReport()
+        {
+            TaskEstimateReport = new List<RITaskEstimate>();
+
+            foreach (var taskEstimate in _taskEstimates)
+            {
+                var item = new RITaskEstimate();
+
+                item.SpecName = taskEstimate.SpecName;
+                item.Analytic = taskEstimate.Analytic;
+                item.Date = taskEstimate.Date;
+                item.Developer = taskEstimate.Developer;
+                item.Reviewer = taskEstimate.Reviewer;
+                item.EstimateDeveloper = taskEstimate.EstimateDeveloper;
+                item.EstimateReviewer = taskEstimate.EstimateReviewer;
+
+                item.TaskId = taskEstimate.TaskId;
+
+                var task = TaskReport.FirstOrDefault(x => x.TaskId == item.TaskId);
+
+                if (task != null)
+                {
+                    item.TaskName = task.TaskName;
+                    item.Start = task.StartDate;
+                    item.End = task.FinishDate;
+                    item.EstimateFact = task.CompletedWork;
+                }
+
+                TaskEstimateReport.Add(item);
+            }
         }
     }
 }
