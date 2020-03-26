@@ -57,8 +57,10 @@
     <Compile Include="Models\Config\SpecialDay.cs" />
     <Compile Include="Models\RIActivity.cs" />
     <Compile Include="Models\RITask.cs" />
+    <Compile Include="Models\RITaskEstimate.cs" />
     <Compile Include="Models\RIWorkingTime.cs" />
     <Compile Include="Models\RIWorkingTimeDiff.cs" />
+    <Compile Include="Models\Config\TaskEstimate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedual.cs" />
   </ItemGroup>

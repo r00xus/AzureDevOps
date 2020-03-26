@@ -32,6 +32,10 @@ namespace MDS.Azure.DevOps.Reader
 
         public List<WIActivityDto> GetActivities(List<string> persons, DateTime dateStart, DateTime? dateEnd)
         {
+            var result = new List<WIActivityDto>();
+
+            if (persons.Count == 0) return result;
+
             var queryStr = WIQL.GetActivity.Replace("@persons", string.Join(",", persons.Select(x => $"'{x}'")));
             queryStr = queryStr.Replace("@dateFrom", dateStart.ToString("yyyy-MM-dd"));
             DateTime dateTo = dateEnd ?? DateTime.Now.Date;
@@ -40,8 +44,6 @@ namespace MDS.Azure.DevOps.Reader
             var query = new Query(_workItemStore, queryStr);
 
             WorkItemCollection workItems = query.RunQuery();
-
-            var result = new List<WIActivityDto>();
 
             foreach (WorkItem workItem in workItems)
             {
