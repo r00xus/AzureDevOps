@@ -95,14 +95,26 @@
                 //nowrap: false,
                 columns: [[
                     {
+                        field: 'ActivityId', title: 'ActivityId', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.renderWorkItemLink(val);
+                        }
+                    },
+                    { field: 'ActivityName', title: 'ActivityName', sortable: true },
+                    {
+                        field: 'TargetDate', title: 'TargetDate', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.formatDate(val);
+                        }
+                    },
+                    { field: 'AssigndTo', title: 'AssigndTo', sortable: true },
+                    {
                         field: 'TaskId', title: 'TaskId', sortable: true,
                         formatter: function (val) {
-                            return '<div class="fake-link"><a href="#">' + val + '</a></div>'
+                            return $.utils.renderWorkItemLink(val);
                         }
                     },
                     { field: 'TaskName', title: 'TaskName', sortable: true },
-                    { field: 'ActivityId', title: 'ActivityId', sortable: true },
-                    { field: 'ActivityName', title: 'ActivityName', sortable: true },
                     {
                         field: 'StartDate', title: 'StartDate', sortable: true,
                         formatter: function (val) {
@@ -115,14 +127,7 @@
                             return $.utils.formatDate(val);
                         }
                     },
-                    { field: 'AssigndTo', title: 'AssigndTo', sortable: true },
                     { field: 'Position', title: 'Position', sortable: true },
-                    {
-                        field: 'TargetDate', title: 'TargetDate', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatDate(val);
-                        }
-                    },
                     { field: 'Month', title: 'Month', sortable: true },
                     {
                         field: 'CompletedWork', title: 'CompletedWork', align: 'right', sortable: true,
@@ -143,18 +148,24 @@
 
             that.dboxDateTo = $('#dboxDateTo', that.element);
 
-            that.dlistEmployees = $('#dlistEmployees', that.element);
-            that.dlistEmployees.datalist({
+            that.dtgridEmployees = $('#dtgridEmployees', that.element);
+            that.dtgridEmployees.datagrid({
                 url: '/Settings/Employees/',
                 checkbox: true,
                 singleSelect: false,
                 selectOnCheck: false,
                 checkOnSelect: false,
                 singleSelect: true,
+                fitColumns: true,
+                remoteSort: false,
+                columns: [[
+                    { field: 'check', checkbox: true },
+                    { field: 'text', title: 'Сотрудники', width: 100, sortable: true }
+                ]],
                 onLoadSuccess: function () {
                     that._loadSelected();
                 }
-            });
+            }).datagrid('getPanel').addClass('lines-no');
 
             that._loadFilter();
         },
@@ -231,7 +242,7 @@
                 end: that.dboxDateTo.datebox('getValue')
             };
 
-            var employees = that.dlistEmployees.datalist('getChecked');
+            var employees = that.dtgridEmployees.datagrid('getChecked');
 
             $.each(employees, function (index, employee) {
 
@@ -260,7 +271,7 @@
 
             params = JSON.parse($.cookie('params'));
 
-            var rows = that.dlistEmployees.datalist('getData').rows;
+            var rows = that.dtgridEmployees.datagrid('getData').rows;
 
             $.each(params.employees, function (index, employee) {
 
@@ -268,9 +279,9 @@
 
                 if (finded.length == 0) return;
 
-                var rowIndex = that.dlistEmployees.datalist('getRowIndex', finded[0]);
+                var rowIndex = that.dtgridEmployees.datagrid('getRowIndex', finded[0]);
 
-                that.dlistEmployees.datalist('checkRow', rowIndex);
+                that.dtgridEmployees.datagrid('checkRow', rowIndex);
 
             });
 
@@ -316,7 +327,7 @@
 
                 window.location.href = '/Home/GetExcel?key=' + result.key;
             });
-        }
+        },
 
     });
 

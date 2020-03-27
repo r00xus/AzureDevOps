@@ -17,6 +17,46 @@
     "estimateDeveloper": 8,
     "estimateReviewer": 7,
     "date": "2020-03-26T00:00:00",
-    "taskId": 28021
+    "taskId": 28046
+  },
+  {
+    "specName": "Дополнение к актам ГУ23_12_11_2019 (акт по отправлению плата за хранение повагонно(001)",
+    "analytic": "Ризуненко Лариса Викторовна",
+    "developer": "Лукавнев Алексей Николаевич",
+    "reviewer": "Рунчев Руслан Павлович",
+    "estimateDeveloper": 2,
+    "estimateReviewer": 2,
+    "date": "2020-03-26T00:00:00",
+    "taskId": 28054
+  },
+  {
+    "specName": "Доработка к форме Условия паты за пользование вагонами",
+    "analytic": "Ризуненко Лариса Викторовна",
+    "developer": "Лысун Ирина Николаевна",
+    "reviewer": "Рунчев Руслан Павлович",
+    "estimateDeveloper": 8,
+    "estimateReviewer": 7,
+    "date": "2020-03-25T00:00:00",
+    "taskId": 28047
+  },
+  {
+    "specName": "Доработка Натурный лист, Сдаточные ведомости",
+    "analytic": "Ризуненко Лариса Викторовна",
+    "developer": "Лысун Ирина Николаевна",
+    "reviewer": "Рунчев Руслан Павлович",
+    "estimateDeveloper": 8,
+    "estimateReviewer": 7,
+    "date": "2020-03-25T00:00:00",
+    "taskId": 28048
+  },
+  {
+    "specName": "Разработка справочника Процент вознаграждения экспедитора доработка Справочник вагонов",
+    "analytic": "Январева Наталья Ивановна",
+    "developer": "Лысун Ирина Николаевна",
+    "reviewer": "Рунчев Руслан Павлович",
+    "estimateDeveloper": null,
+    "estimateReviewer": null,
+    "date": null,
+    "taskId": null
   }
 ]

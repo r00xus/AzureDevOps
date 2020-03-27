@@ -12,6 +12,11 @@
     vertical-align: middle;
 }
 
-.fake-link a {
+.workitem-link a {
     color: inherit;
+}
+
+.lines-no .datagrid-body td {
+    border-right: 1px dotted transparent;
+    border-bottom: 1px dotted transparent;
 }

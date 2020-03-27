@@ -19,15 +19,15 @@ namespace MDS.Azure.DevOps.Core.Models.Config
         public string Reviewer { get; set; }
 
         [DataMember(Name = "estimateReviewer")]
-        public decimal EstimateReviewer { get; set; }
+        public decimal? EstimateReviewer { get; set; }
 
         [DataMember(Name = "estimateDeveloper")]
-        public decimal EstimateDeveloper { get; set; }
+        public decimal? EstimateDeveloper { get; set; }
 
         [DataMember(Name = "taskId")]
         public int? TaskId { get; set; }
 
         [DataMember(Name = "date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
     }
 }

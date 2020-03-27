@@ -13,6 +13,14 @@
                 numeral.nullFormat('');
 
                 this.initEasyUi();
+                this.initCookie();
+            },
+
+            initCookie: function () {
+
+                $.cookie.json = true;
+
+                $.cookie.defaults.expires = 365;
             },
 
             initEasyUi: function () {
@@ -101,8 +109,11 @@
                 if (val == null) return null;
                 var parse = moment(val, ["L", moment.ISO_8601]);
                 return parse.format('L');
-            }
+            },
 
+            renderWorkItemLink: function (id) {
+                return '<div class="workitem-link"><a href="https://dev.azure.com/mihvsts/UIS/_workitems/edit/' + id + '&fullScreen=true" target="_blank">' + id + '</a></div>';
+            }
         }
     });
 

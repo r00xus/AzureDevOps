@@ -26,7 +26,7 @@ namespace MDS.Azure.DevOps.Core.Models
         public string Analytic { get; set; }
 
         [FieldInfo(Title = "Дата оценки", Format = "dd.MM.yyyy")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [FieldInfo(Title = "ФИО Программиста")]
         public string Developer { get; set; }
@@ -35,12 +35,12 @@ namespace MDS.Azure.DevOps.Core.Models
         public string Reviewer { get; set; }
 
         [FieldInfo(Title = "Срок, оценил программист", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        public decimal EstimateDeveloper { get; set; }
+        public decimal? EstimateDeveloper { get; set; }
 
         [FieldInfo(Title = "Срок, оценил ответственный за проект", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        public decimal EstimateReviewer { get; set; }
+        public decimal? EstimateReviewer { get; set; }
 
         [FieldInfo(Title = "Срок, фактический", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        public decimal EstimateFact { get; set; }
+        public decimal? EstimateFact { get; set; }
     }
 }
