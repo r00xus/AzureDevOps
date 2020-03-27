@@ -11,5 +11,6 @@ namespace MDS.Azure.DevOps.Reader.Models
         public string mdsTaskDescription1 { get; set; }
         public string mdsTaskDescription2 { get; set; }
         public string State { get; set; }
+        public decimal CompletedWork { get; set; }
     }
 }

@@ -67,6 +67,42 @@ namespace MDS.Azure.DevOps.Reader
             return result;
         }
 
+        public List<WITaskDto> GetTasks(List<int> taskIds)
+        {
+            var result = new List<WITaskDto>();
+
+            if (taskIds.Count == 0) return result;
+
+            var queryStr = WIQL.GetTasksById.Replace("@id", string.Join(",", taskIds.Select(x => $"'{x}'")));
+
+            var query = new Query(_workItemStore, queryStr);
+
+            WorkItemCollection workItems = query.RunQuery();
+
+            foreach (WorkItem workItem in workItems)
+            {
+                var item = new WITaskDto();
+
+
+                item.Id = (int)workItem.Fields["ID"].Value;
+                item.Name = workItem.Fields["Title"].Value.ToString();
+                item.FinishDate = (DateTime?)workItem.Fields["Finish Date"].Value;
+                item.State = workItem.Fields["State"].Value.ToString();
+                item.StartDate = (DateTime?)workItem.Fields["Start Date"].Value;
+                item.mdsTaskDescription1 = workItem.Fields["mdsTaskDescription1"].Value.ToString();
+                item.mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString();
+                item.mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString();
+                item.mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString();
+
+                if (workItem.Fields["Completed Work"].Value != null)
+                    item.CompletedWork = Convert.ToDecimal(workItem.Fields["Completed Work"].Value);
+
+                result.Add(item);
+            }
+
+            return result;
+        }
+
         private void GetTasks(List<WIActivityDto> activites)
         {
             if (activites.Count == 0) return;

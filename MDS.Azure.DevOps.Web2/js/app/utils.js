@@ -112,7 +112,30 @@
             },
 
             renderWorkItemLink: function (id) {
+                if (id == null || id === undefined) return null;
                 return '<div class="workitem-link"><a href="https://dev.azure.com/mihvsts/UIS/_workitems/edit/' + id + '&fullScreen=true" target="_blank">' + id + '</a></div>';
+            },
+
+            setWorkItemLinks: function (target) {
+
+                target.find('.workitem-link a').each(function () {
+
+                    var link = $(this);
+
+                    $(this).click(function (e) {
+
+                        e.preventDefault();
+
+                        var width = 1000;
+                        var height = 800;
+                        var left = (window.screen.width / 2) - ((width / 2) + 10);
+                        var top = (window.screen.height / 2) - ((height / 2) + 50);
+
+                        window.open($(this).attr('href'), 'xml', 'left=' + left + ',top=' + top + ',width=' + width + ',height=' + height + ',resizable,scrollbars');
+
+                    });
+                });
+
             }
         }
     });

@@ -184,6 +184,12 @@ namespace MDS.Azure.DevOps.Core
 
         private void CreateTaskEstimateReport()
         {
+            var taskIds = _taskEstimates.Where(x => x.TaskId != null).Select(x => (int)x.TaskId).ToList();
+
+            var reader = new DevOpsReader(AzureUrl);
+
+            var tasks = reader.GetTasks(taskIds);
+
             TaskEstimateReport = new List<RITaskEstimate>();
 
             foreach (var taskEstimate in _taskEstimates)
@@ -200,14 +206,15 @@ namespace MDS.Azure.DevOps.Core
 
                 item.TaskId = taskEstimate.TaskId;
 
-                var task = TaskReport.FirstOrDefault(x => x.TaskId == item.TaskId);
+                var task = tasks.FirstOrDefault(x => x.Id == item.TaskId);
 
                 if (task != null)
                 {
-                    item.TaskName = task.TaskName;
+                    item.TaskName = task.Name;
                     item.Start = task.StartDate;
                     item.End = task.FinishDate;
                     item.EstimateFact = task.CompletedWork;
+                    item.State = task.State;
                 }
 
                 TaskEstimateReport.Add(item);
