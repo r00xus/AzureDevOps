@@ -282,6 +282,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EstimateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -806,6 +807,8 @@
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="img\azure-logo.svg" />
+    <Content Include="js\app\estimate\panelEstimate.js" />
     <Content Include="js\app\main\panelMain.js" />
     <Content Include="js\app\settings\panelEmployee.js" />
     <Content Include="js\app\settings\panelSettings.js" />
@@ -986,6 +989,9 @@
     <Content Include="Views\Settings\_panelSettings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Estimate\Index.cshtml" />
+    <Content Include="Views\Estimate\_panelEstimate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

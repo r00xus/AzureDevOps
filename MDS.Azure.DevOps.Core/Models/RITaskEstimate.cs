@@ -49,16 +49,28 @@ namespace MDS.Azure.DevOps.Core.Models
         [DataMember(Name = "reviewer")]
         public string Reviewer { get; set; }
 
-        [FieldInfo(Title = "Срок, оценил программист", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        [DataMember(Name = "estimateDeveloper")]
-        public decimal? EstimateDeveloper { get; set; }
+        [FieldInfo(NoDisplay = true)]
+        [DataMember(Name = "estimateDeveloperHours")]
+        public decimal? EstimateDeveloperHours { get; set; }
 
-        [FieldInfo(Title = "Срок, оценил ответственный за проект", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        [DataMember(Name = "estimateReviewer")]
-        public decimal? EstimateReviewer { get; set; }
+        [FieldInfo(Title = "Срок, оценки программист", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
+        [DataMember(Name = "estimateDeveloperDays")]
+        public decimal? EstimateDeveloperDays { get { return EstimateDeveloperHours / 8; } }
 
-        [FieldInfo(Title = "Срок, фактический", Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
-        [DataMember(Name = "estimateFact")]
-        public decimal? EstimateFact { get; set; }
+        [FieldInfo(NoDisplay = true)]
+        [DataMember(Name = "estimateReviewerHours")]
+        public decimal? EstimateReviewerHours { get; set; }
+
+        [FieldInfo(Title = "Срок, оценил ответственный за проект", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
+        [DataMember(Name = "estimateReviewerDays")]
+        public decimal? EstimateReviewerDays { get { return EstimateReviewerHours / 8; } }
+
+        [FieldInfo(NoDisplay = true)]
+        [DataMember(Name = "estimateFactHours")]
+        public decimal? EstimateFactHours { get; set; }
+
+        [FieldInfo(Title = "Срок, фактический", HorizontalAlignment = HorizontalAlignmentValues.Right, Width = 15)]
+        [DataMember(Name = "estimateFactDays")]
+        public decimal? EstimateFactDays { get { return EstimateFactHours / 8; } }
     }
 }

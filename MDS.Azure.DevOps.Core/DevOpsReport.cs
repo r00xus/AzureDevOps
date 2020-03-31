@@ -23,16 +23,24 @@ namespace MDS.Azure.DevOps.Core
 
     public class DevOpsReport
     {
-        public DevOpsReport(DevOpsReportParams @params, ConfigBase config, List<TaskEstimate> taskEstimates)
+        public DevOpsReport(ConfigBase config)
+        {
+            _config = config;
+        }
+
+        public void ExecMainReport(DevOpsReportParams @params)
         {
             _params = @params;
-            _config = config;
-            _taskEstimates = taskEstimates;
 
             GetDataFromDevOps();
             CreateActivityReport();
             CreateTaskReport();
             CreateWorkingTimeDiffReport();
+        }
+
+        public void ExecEstimateReport(List<TaskEstimate> taskEstimates)
+        {
+            _taskEstimates = taskEstimates;
             CreateTaskEstimateReport();
         }
 
@@ -201,8 +209,8 @@ namespace MDS.Azure.DevOps.Core
                 item.Date = taskEstimate.Date;
                 item.Developer = taskEstimate.Developer;
                 item.Reviewer = taskEstimate.Reviewer;
-                item.EstimateDeveloper = taskEstimate.EstimateDeveloper;
-                item.EstimateReviewer = taskEstimate.EstimateReviewer;
+                item.EstimateDeveloperHours = taskEstimate.EstimateDeveloperHours;
+                item.EstimateReviewerHours = taskEstimate.EstimateReviewerHours;
 
                 item.TaskId = taskEstimate.TaskId;
 
@@ -213,12 +221,14 @@ namespace MDS.Azure.DevOps.Core
                     item.TaskName = task.Name;
                     item.Start = task.StartDate;
                     item.End = task.FinishDate;
-                    item.EstimateFact = task.CompletedWork;
+                    item.EstimateFactHours = task.CompletedWork;
                     item.State = task.State;
                 }
 
                 TaskEstimateReport.Add(item);
             }
+
+            TaskEstimateReport = TaskEstimateReport.OrderBy(x => x.Date).ToList();
         }
     }
 }

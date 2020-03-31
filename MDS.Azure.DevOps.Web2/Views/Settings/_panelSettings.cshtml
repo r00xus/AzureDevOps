@@ -1,5 +1,10 @@
 ﻿<div id="layout" class="easyui-layout" fit="true">
-    <div region="center" border="false">
+    <div region="north" class="datagrid-toolbar" height="auto" style="padding:5px;">
+        <a id="btnRefresh" href="#" plain="true" class="easyui-linkbutton">Обновить</a>
+        <span class="separator"></span>
+        <a id="btnSave" href="#" plain="true" class="easyui-linkbutton">Сохранить</a>
+    </div>
+    <div region="center">
         <div class="easyui-tabs" fit="true" border="false">
             <div title="Сотрудники" style="padding:5px;">
                 <div id="tbarEmployees" style="padding:3px;">
@@ -17,10 +22,6 @@
                 <table id="dtgridExclude" fit="true"></table>
             </div>
         </div>
-    </div>
-    <div region="south" height="auto" style="padding:10px; text-align:right;">
-        <a id="btnOk" href="#" class="easyui-linkbutton" style="width:90px;">Ок</a>
-        <a id="btnCancel" href="#" class="easyui-linkbutton" style="width:90px;">Отмена</a>
     </div>
 </div>
 

@@ -20,35 +20,27 @@ namespace MDS.Azure.DevOps.Web2.Controllers
 
         public ActionResult DevOpsReport(DevOpsReportParams @params)
         {
-            var report = new DevOpsReport(@params, GetConfig(), GetTaskEstimate());
+            var report = new DevOpsReport(GetConfig());
+
+            report.ExecMainReport(@params);
 
             return new JsonNetResult
             {
                 Data = new
                 {
                     activity = report.ActivityReport,
-                    diff = report.WorkingTimeDiffReport,
-                    estimate = report.TaskEstimateReport,
+                    diff = report.WorkingTimeDiffReport
                 }
             };
-        }
-
-        private List<TaskEstimate> GetTaskEstimate()
-        {
-            var fileName = Server.MapPath("~/appdata/taskEstimate.json");
-
-            if (!System.IO.File.Exists(fileName)) return new List<TaskEstimate>();
-
-            var json = System.IO.File.ReadAllText(fileName);
-
-            return JsonConvert.DeserializeObject<List<TaskEstimate>>(json);
         }
 
         public ActionResult CreateExcel(DevOpsReportParams @params)
         {
             var config = GetConfig();
 
-            var report = new DevOpsReport(@params, config, GetTaskEstimate());
+            var report = new DevOpsReport(config);
+
+            report.ExecMainReport(@params);
 
             var excel = new ExcelReport();
 
@@ -84,7 +76,7 @@ namespace MDS.Azure.DevOps.Web2.Controllers
 
             if (bytes == null) throw new Exception($"Excel файл с ключом {key} не найден!");
 
-            TempData[key] = null;            
+            TempData[key] = null;
 
             return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Отчет DevOps.xlsx");
         }

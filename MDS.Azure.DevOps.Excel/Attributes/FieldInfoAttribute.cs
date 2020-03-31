@@ -11,8 +11,13 @@ namespace MDS.Azure.DevOps.Excel.Attributes
     public class FieldInfoAttribute : Attribute
     {
         public string Title { get; set; }
+
         public int Width { get; set; }
+
         public HorizontalAlignmentValues HorizontalAlignment { get; set; } = HorizontalAlignmentValues.Left;
+
         public string Format { get; set; }
+
+        public bool NoDisplay { get; set; } = false;
     }
 }

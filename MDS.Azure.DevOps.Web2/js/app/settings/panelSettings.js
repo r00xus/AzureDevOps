@@ -2,17 +2,13 @@
 
     $.widget("custom.panelSettings", {
 
-        options: {
-            onSave: function () { },
-            onCancel: function () { }
-        },
-
         _create: function () {
 
             var that = this;
 
             that._createEmployeeGrid();
             that._createExcludeGrid();
+            that._createToolbar();
 
             that.panelEmployee = $('#panelEmployee', that.element);
             that.panelEmployee.panelEmployee().window({
@@ -20,31 +16,37 @@
                 modal: true,
             });
 
-            that._createFooter();
+            that.load();
         },
 
-        _createFooter: function () {
+        _createToolbar: function () {
 
             var that = this;
 
-            // Кнопка ОК
-            that.btnOk = $('#btnOk', that.element);
-            that.btnOk.linkbutton({
+            // Кнопка Обновить
+            that.btnRefresh = $('#btnRefresh', that.element);
+            that.btnRefresh.linkbutton({
                 onClick: function () {
-                    that._onBtnOkClick();
+                    that._onBtnRefreshClick();
                 }
             });
 
-            // Кнопка Отмена
-            that.btnCancel = $('#btnCancel', that.element);
-            that.btnCancel.linkbutton({
+            // Кнопка Сохранить
+            that.btnSave = $('#btnSave', that.element);
+            that.btnSave.linkbutton({
                 onClick: function () {
-                    that._onBtnCancelClick();
+                    that._onBtnSaveClick();
                 }
             });
+
         },
 
-        _onBtnOkClick: function () {
+        _onBtnRefreshClick: function () {
+
+            this.load();
+        },
+
+        _onBtnSaveClick: function () {
 
             this._save();
         },
@@ -68,10 +70,6 @@
                 }
             });
 
-        },
-
-        _onBtnCancelClick: function () {
-            this.options.onCancel();
         },
 
         _getSettings: function () {

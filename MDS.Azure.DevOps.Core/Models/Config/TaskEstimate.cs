@@ -18,11 +18,11 @@ namespace MDS.Azure.DevOps.Core.Models.Config
         [DataMember(Name = "reviewer")]
         public string Reviewer { get; set; }
 
-        [DataMember(Name = "estimateReviewer")]
-        public decimal? EstimateReviewer { get; set; }
+        [DataMember(Name = "estimateReviewerHours")]
+        public decimal? EstimateReviewerHours { get; set; }
 
-        [DataMember(Name = "estimateDeveloper")]
-        public decimal? EstimateDeveloper { get; set; }
+        [DataMember(Name = "estimateDeveloperHours")]
+        public decimal? EstimateDeveloperHours { get; set; }
 
         [DataMember(Name = "taskId")]
         public int? TaskId { get; set; }

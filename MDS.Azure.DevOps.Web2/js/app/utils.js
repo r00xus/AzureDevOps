@@ -106,7 +106,7 @@
 
             // Форматирование даты
             formatDate: function (val) {
-                if (val == null) return null;
+                if (val == null || val == '') return null;
                 var parse = moment(val, ["L", moment.ISO_8601]);
                 return parse.format('L');
             },
@@ -126,7 +126,7 @@
 
                         e.preventDefault();
 
-                        var width = 1000;
+                        var width = 1200;
                         var height = 800;
                         var left = (window.screen.width / 2) - ((width / 2) + 10);
                         var top = (window.screen.height / 2) - ((height / 2) + 50);

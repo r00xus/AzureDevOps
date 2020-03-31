@@ -4,11 +4,9 @@
 
         _create: function () {
 
-            this._createSettingsPanel();
             this._createFilterPanel();
             this._createActivityGrid();
             this._createDiffGrid();
-            this._createEstimateGrid();
             this._createMainToolbar();
 
             this.panelReports = $('#panelReports', this.element);
@@ -62,25 +60,6 @@
                 ]]
             });
 
-        },
-
-        _createSettingsPanel: function () {
-
-            var that = this;
-
-            that.panelSettings = $('#panelSettings', that.element);
-            that.panelSettings.panelSettings({
-                onSave: function () {
-                    that.dtgridEmployees.datagrid('reload');
-                    that.panelSettings.window('close');
-                },
-                onCancel: function () {
-                    that.panelSettings.window('close');
-                }
-            }).window({
-                closed: true,
-                modal: true,
-            });
         },
 
         _createActivityGrid: function () {
@@ -142,86 +121,6 @@
                     $.utils.setWorkItemLinks($(this).datagrid('getPanel'));
                 }
             });
-        },
-
-        _createEstimateGrid: function () {
-
-            var that = this;
-
-            that.dtgridEstimate = $('#dtgridEstimate', that.element);
-            that.dtgridEstimate.datagrid({
-                striped: true,
-                singleSelect: true,
-                rownumbers: true,
-                remoteSort: false,
-                nowrap: false,
-                columns: [[
-                    {
-                        field: 'taskId', title: 'ID Task', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.renderWorkItemLink(val);
-                        }
-                    },
-                    {
-                        field: 'taskName', title: 'Название Task', sortable: true
-                    },
-                    {
-                        field: 'state', title: 'State', sortable: true
-                    },
-                    {
-                        field: 'start', title: 'Start', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatDate(val);
-                        }
-                    },
-                    {
-                        field: 'end', title: 'End', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatDate(val);
-                        }
-                    },
-                    {
-                        field: 'developer', title: 'Программист', sortable: true
-                    },
-                    {
-                        field: 'estimateDeveloper', title: 'Оценка программиста', align: 'right', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatHours(val);
-                        }
-                    },
-                    {
-                        field: 'estimateReviewer', title: 'Оценка ответст.', align: 'right', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatHours(val);
-                        }
-                    },
-                    {
-                        field: 'estimateFact', title: 'Фактически', align: 'right', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatHours(val);
-                        }
-                    },
-                    {
-                        field: 'specName', title: 'Название постановки', sortable: true
-                    },
-                    {
-                        field: 'analytic', title: 'Постановщик', sortable: true
-                    },
-                    {
-                        field: 'date', title: 'Дата оценки', sortable: true,
-                        formatter: function (val) {
-                            return $.utils.formatDate(val);
-                        }
-                    },
-                    {
-                        field: 'reviewer', title: 'Ответственный за проект', sortable: true
-                    },
-                ]],
-                onLoadSuccess: function () {
-                    $.utils.setWorkItemLinks($(this).datagrid('getPanel'));
-                }
-            });
-
         },
 
         _createFilterPanel: function () {
@@ -309,7 +208,6 @@
 
                     that.dtgridActivity.datagrid('loadData', result.activity);
                     that.dtgridDiff.datagrid('loadData', result.diff);
-                    that.dtgridEstimate.datagrid('loadData', result.estimate);
 
                     that.panelReports.panel('loaded');
 

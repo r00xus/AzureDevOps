@@ -8,6 +8,11 @@ namespace MDS.Azure.DevOps.Web.Controllers
 {
     public class SettingsController : BaseController
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Load()
         {
             var config = GetConfig();
@@ -30,7 +35,8 @@ namespace MDS.Azure.DevOps.Web.Controllers
             var config = GetConfig();
 
             var employees = config.Employees
-                .Select(x => new { value = x.Name, text = x.NameShort }).ToList();
+                .OrderBy(x => x.Name)
+                .Select(x => new { value = x.Name, text = x.Name }).ToList();
 
             return Json(employees);
         }

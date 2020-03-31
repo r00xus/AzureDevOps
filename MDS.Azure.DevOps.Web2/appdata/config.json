@@ -126,20 +126,7 @@
           "hours": 0.0
         }
       ],
-      "customDays": [
-        {
-          "dayOfWeek": 3,
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": 6,
-          "hours": 0.0
-        },
-        {
-          "dayOfWeek": 7,
-          "hours": 0.0
-        }
-      ]
+      "customDays": []
     },
     {
       "name": "Царегородцева Мария Сергеевна",
