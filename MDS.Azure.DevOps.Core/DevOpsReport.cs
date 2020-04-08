@@ -36,6 +36,7 @@ namespace MDS.Azure.DevOps.Core
             CreateActivityReport();
             CreateTaskReport();
             CreateWorkingTimeDiffReport();
+            CreateTimeReport();
         }
 
         public void ExecEstimateReport(List<TaskEstimate> taskEstimates)
@@ -98,6 +99,7 @@ namespace MDS.Azure.DevOps.Core
                     reportItem.Month = ((DateTime)item.TargetDate).ToString("MMMM", CultureInfo.CreateSpecificCulture("ru-RU"));
                 reportItem.TaskState = item.Task.State;
                 reportItem.AreaPath = item.AreaPath;
+                reportItem.OriginalEstimate = item.Task.OriginalEstimate;
 
                 ActivityReport.Add(reportItem);
             }
@@ -120,6 +122,7 @@ namespace MDS.Azure.DevOps.Core
                 x.ServiceName,
                 x.Technology,
                 x.TaskState,
+                x.OriginalEstimate,
                 x.Company,
                 x.WorkType,
                 x.AreaPath,
@@ -145,6 +148,7 @@ namespace MDS.Azure.DevOps.Core
                 item.AreaPath = task.Key.AreaPath;
                 item.Month = task.Key.Month;
                 item.Company = task.Key.Company;
+                item.OriginalEstimate = task.Key.OriginalEstimate;
 
                 TaskReport.Add(item);
             }
@@ -229,6 +233,33 @@ namespace MDS.Azure.DevOps.Core
             }
 
             TaskEstimateReport = TaskEstimateReport.OrderBy(x => x.Date).ToList();
+        }
+
+        private void CreateTimeReport()
+        {
+            WorkingTimeReport = new List<RIWorkingTime>();
+
+            foreach (var employee in _params.Employees)
+            {
+                var schedual = new Schedual(new SchedualParams
+                {
+                    Name = employee,
+                    Start = _params.Start,
+                    End = _params.End
+                }, _config);
+
+                var item = new RIWorkingTime();
+
+                item.EmployeeName = employee;
+
+                item.SchedualeHours = schedual.Hours;
+
+                item.DevOpsHours = ActivityReport.Where(x => x.AssigndTo == employee).Sum(x => x.CompletedWork);
+
+                item.Diff = item.DevOpsHours - item.SchedualeHours;
+
+                WorkingTimeReport.Add(item);
+            }
         }
     }
 }

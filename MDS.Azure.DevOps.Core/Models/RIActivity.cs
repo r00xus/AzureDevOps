@@ -1,6 +1,7 @@
 ﻿using MDS.Azure.DevOps.Excel.Attributes;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
+using System.Runtime.Serialization;
 
 namespace MDS.Azure.DevOps.Models
 {
@@ -54,5 +55,9 @@ namespace MDS.Azure.DevOps.Models
         public string Company { get; set; }
 
         public string AreaPath { get; set; }
+
+        [FieldInfo(NoDisplay = true)]
+        [DataMember(Name = "originalEstimate")]
+        public decimal OriginalEstimate { get; set; }
     }
 }

@@ -804,10 +804,17 @@
     <Content Include="css\easyui\themes\mobile.css" />
     <Content Include="css\easyui\themes\react.css" />
     <Content Include="css\easyui\themes\vue.css" />
+    <Content Include="css\icons.css" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="img\azure-logo.svg" />
+    <Content Include="img\icons\activity.png" />
+    <Content Include="img\icons\edit.png" />
+    <Content Include="img\icons\excel.png" />
+    <Content Include="img\icons\refresh.png" />
+    <Content Include="img\icons\save.png" />
+    <Content Include="img\icons\task.png" />
     <Content Include="js\app\estimate\panelEstimate.js" />
     <Content Include="js\app\main\panelMain.js" />
     <Content Include="js\app\settings\panelEmployee.js" />
@@ -984,7 +991,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Settings\_panelEmployee.cshtml" />
     <Content Include="Views\Settings\_panelSettings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -992,6 +998,9 @@
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Estimate\Index.cshtml" />
     <Content Include="Views\Estimate\_panelEstimate.cshtml" />
+    <None Include="Properties\PublishProfiles\Prod.pubxml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_root.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -1033,7 +1042,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61631</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44380/</IISUrl>
+          <IISUrl>https://localhost:44380/AzureDevOps</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

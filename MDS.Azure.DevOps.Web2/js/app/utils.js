@@ -113,7 +113,7 @@
 
             renderWorkItemLink: function (id) {
                 if (id == null || id === undefined) return null;
-                return '<div class="workitem-link"><a href="https://dev.azure.com/mihvsts/UIS/_workitems/edit/' + id + '&fullScreen=true" target="_blank">' + id + '</a></div>';
+                return '<div class="workitem-link" style="display:inline-block;"><a href="https://dev.azure.com/mihvsts/UIS/_workitems/edit/' + id + '&fullScreen=true" target="_blank">' + id + '</a></div>';
             },
 
             setWorkItemLinks: function (target) {
@@ -136,6 +136,18 @@
                     });
                 });
 
+            },
+
+            renderIcon: function (iconCls, tooltip) {
+
+                var result = $('<div></div>');
+
+                var div = $('<div></div>', {
+                    style: 'width:16px; height:16px; display:inline-block; vertical-align: middle;',
+                    class: iconCls
+                }).appendTo(result);
+
+                return result.html();
             }
         }
     });

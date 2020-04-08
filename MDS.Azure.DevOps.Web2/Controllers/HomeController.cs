@@ -29,7 +29,9 @@ namespace MDS.Azure.DevOps.Web2.Controllers
                 Data = new
                 {
                     activity = report.ActivityReport,
-                    diff = report.WorkingTimeDiffReport
+                    task = report.TaskReport,
+                    diff = report.WorkingTimeDiffReport,
+                    time = report.WorkingTimeReport
                 }
             };
         }
@@ -52,8 +54,8 @@ namespace MDS.Azure.DevOps.Web2.Controllers
 
             excel.AddList(report.ActivityReport, criteria);
             excel.AddList(report.TaskReport, criteria);
+            excel.AddList(report.WorkingTimeReport, criteria);
             excel.AddList(report.WorkingTimeDiffReport, criteria);
-            excel.AddList(report.TaskEstimateReport, criteria);
 
             var bytes = excel.GetXlsFile();
 

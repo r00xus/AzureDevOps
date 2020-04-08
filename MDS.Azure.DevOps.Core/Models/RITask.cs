@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace MDS.Azure.DevOps.Models
 {
-    [ListInfo(Title = "Задачи")]
+    [ListInfo(Title = "Задачи c активностями")]
     [DataContract]
     public class RITask
     {
@@ -70,5 +70,9 @@ namespace MDS.Azure.DevOps.Models
         [FieldInfo(Title = "Тип услуги")]
         [DataMember(Name = "serviceType")]
         public string ServiceType { get; set; }
+
+        [FieldInfo(NoDisplay = true)]
+        [DataMember(Name = "originalEstimate")]
+        public decimal OriginalEstimate { get; set; }
     }
 }

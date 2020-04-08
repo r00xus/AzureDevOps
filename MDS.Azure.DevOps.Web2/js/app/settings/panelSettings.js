@@ -58,7 +58,7 @@
             that.element.panel('loading', 'Сохранение настроек...');
 
             $.ajax({
-                url: '/Settings/Save',
+                url: ROOT + '/Settings/Save',
                 type: 'post',
                 data: {
                     config: that._getSettings()
@@ -96,7 +96,7 @@
             that.element.panel('loading', 'Загрузка настроек...');
 
             $.ajax({
-                url: '/Settings/Load/'
+                url: ROOT + '/Settings/Load/'
             }).done(function (data) {
                 var result = JSON.parse(data);
                 that._setSettings(result);

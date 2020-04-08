@@ -1,0 +1,4 @@
+﻿<script>
+        var ORIGIN = '@string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority)';
+        var ROOT = ORIGIN + '@Url.Content("~")'.replace(/\/$/, "");
+</script>

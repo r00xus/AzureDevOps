@@ -6,10 +6,49 @@
 
             this._createFilterPanel();
             this._createActivityGrid();
+            this._createTaskGrid();
             this._createDiffGrid();
+            this._createTimeGrid();
             this._createMainToolbar();
 
             this.panelReports = $('#panelReports', this.element);
+
+        },
+
+        _createTimeGrid: function () {
+
+            var that = this;
+
+            that.dtgridTime = $('#dtgridTime', that.element);
+            that.dtgridTime.datagrid({
+                striped: true,
+                singleSelect: true,
+                rownumbers: true,
+                remoteSort: false,
+                columns: [[
+                    {
+                        field: 'employeeName', title: 'Сотрудник', sortable: true,
+                    },
+                    {
+                        field: 'devOpsHours', title: 'Часы по DevOps', sortable: true, align: 'right',
+                        formatter: function (val) {
+                            return $.utils.formatHours(val);
+                        }
+                    },
+                    {
+                        field: 'schedualeHours', title: 'Часы по графику', sortable: true, align: 'right',
+                        formatter: function (val) {
+                            return $.utils.formatHours(val);
+                        }
+                    },
+                    {
+                        field: 'diff', title: 'Разница', sortable: true, align: 'right',
+                        formatter: function (val) {
+                            return $.utils.formatHours(val);
+                        }
+                    },
+                ]]
+            });
 
         },
 
@@ -62,6 +101,64 @@
 
         },
 
+        _createTaskGrid: function () {
+
+            var that = this;
+
+            that.dtgridTask = $('#dtgridTask', that.element);
+            that.dtgridTask.datagrid({
+                striped: true,
+                singleSelect: true,
+                rownumbers: true,
+                remoteSort: false,
+                columns: [[
+                    {
+                        field: 'id', title: 'Task Id', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.renderIcon('ico-task', 'Задача') + '&nbsp' + $.utils.renderWorkItemLink(val);
+                        }
+                    },
+                    {
+                        field: 'taskName', title: 'Task Name', sortable: true,
+                    },
+                    {
+                        field: 'startDate', title: 'Start Date', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.formatDate(val);
+                        }
+                    },
+                    {
+                        field: 'finishDate', title: 'Finish Date', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.formatDate(val);
+                        }
+                    },
+                    {
+                        field: 'assigndTo', title: 'Assignd To', sortable: true,
+                    },
+                    {
+                        field: 'taskState', title: 'State', sortable: true,
+                    },
+                    {
+                        field: 'completedWork', title: 'Completed Work', sortable: true, align: 'right',
+                        formatter: function (val) {
+                            return $.utils.formatHours(val);
+                        }
+                    },
+                    {
+                        field: 'originalEstimate', title: 'Original Estimate', sortable: true, align: 'right',
+                        formatter: function (val) {
+                            return $.utils.formatHours(val);
+                        }
+                    },
+                ]],
+                onLoadSuccess: function () {
+                    $.utils.setWorkItemLinks($(this).datagrid('getPanel'));
+                }
+            });
+
+        },
+
         _createActivityGrid: function () {
 
             var that = this;
@@ -77,7 +174,7 @@
                     {
                         field: 'ActivityId', title: 'ActivityId', sortable: true,
                         formatter: function (val) {
-                            return $.utils.renderWorkItemLink(val);
+                            return $.utils.renderIcon('ico-activity', 'Активность') + '&nbsp' + $.utils.renderWorkItemLink(val);
                         }
                     },
                     { field: 'ActivityName', title: 'ActivityName', sortable: true },
@@ -91,7 +188,7 @@
                     {
                         field: 'TaskId', title: 'TaskId', sortable: true,
                         formatter: function (val) {
-                            return $.utils.renderWorkItemLink(val);
+                            return $.utils.renderIcon('ico-task', 'Задача') + '&nbsp' + $.utils.renderWorkItemLink(val);
                         }
                     },
                     { field: 'TaskName', title: 'TaskName', sortable: true },
@@ -133,7 +230,7 @@
 
             that.dtgridEmployees = $('#dtgridEmployees', that.element);
             that.dtgridEmployees.datagrid({
-                url: '/Settings/Employees/',
+                url: ROOT + '/Settings/Employees/',
                 checkbox: true,
                 singleSelect: false,
                 selectOnCheck: false,
@@ -196,7 +293,7 @@
             that.panelReports.panel('loading', 'Выборка данных');
 
             $.ajax({
-                url: '/Home/DevOpsReport/',
+                url: ROOT + '/Home/DevOpsReport/',
                 data: {
                     params: params
                 },
@@ -208,6 +305,8 @@
 
                     that.dtgridActivity.datagrid('loadData', result.activity);
                     that.dtgridDiff.datagrid('loadData', result.diff);
+                    that.dtgridTask.datagrid('loadData', result.task);
+                    that.dtgridTime.datagrid('loadData', result.time);
 
                     that.panelReports.panel('loaded');
 
@@ -297,7 +396,7 @@
             var params = that._getParams();
 
             $.ajax({
-                url: '/Home/CreateExcel',
+                url: ROOT + '/Home/CreateExcel',
                 type: 'post',
                 data: {
                     params: params
@@ -308,7 +407,7 @@
 
                 that.panelReports.panel('loaded');
 
-                window.location.href = '/Home/GetExcel?key=' + result.key;
+                window.location.href = ROOT + '/Home/GetExcel?key=' + result.key;
             });
         },
 

@@ -24,6 +24,7 @@
         <div class="easyui-layout" fit="true" border="false">
             <div region="north" class="datagrid-toolbar" height="auto" style="padding:5px;">
                 <a id="btnRefresh" href="#" class="easyui-linkbutton" plain="true">Выполинть</a>
+                <span class="separator"></span>
                 <a id="btnExcel" href="#" class="easyui-linkbutton" plain="true">Выгрузить в Excel</a>
             </div>
             <div region="center" border="false">
@@ -31,6 +32,14 @@
                     @*Активности*@
                     <div title="Активности" style="padding:10px;">
                         <table id="dtgridActivity" fit="true"></table>
+                    </div>
+                    @*Задачи c активностями*@
+                    <div title="Задачи c активностями" style="padding:10px;">
+                        <table id="dtgridTask" fit="true"></table>
+                    </div>
+                    @*Отработанное время*@
+                    <div title="Отработанное время" style="padding:10px;">
+                        <table id="dtgridTime" fit="true"></table>
                     </div>
                     @*Расхождения с графиком*@
                     <div title="Расхождения с графиком" style="padding:10px;">

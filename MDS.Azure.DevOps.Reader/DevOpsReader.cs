@@ -94,6 +94,10 @@ namespace MDS.Azure.DevOps.Reader
                 item.mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString();
                 item.mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString();
 
+
+                if (workItem.Fields["Original Estimate"].Value != null)
+                    item.OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value);
+
                 if (workItem.Fields["Completed Work"].Value != null)
                     item.CompletedWork = Convert.ToDecimal(workItem.Fields["Completed Work"].Value);
 
@@ -138,6 +142,7 @@ namespace MDS.Azure.DevOps.Reader
                     mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString(),
                     mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString(),
                     mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString(),
+                    OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value)
                 });
             }
 

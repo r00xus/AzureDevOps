@@ -9,7 +9,7 @@
             that.dtgridEstimate = $('#dtgridEstimate', that.element);
             that.dtgridEstimate.datagrid({
                 toolbar: $('#tbarEstimate', that.element),
-                url: '/Estimate/EstimateReport/',
+                url: ROOT + '/Estimate/EstimateReport/',
                 striped: true,
                 singleSelect: true,
                 checkOnSelect: false,
@@ -186,7 +186,7 @@
             that.dtgridEstimate.datagrid('loading');
 
             $.ajax({
-                url: '/Estimate/Save/',
+                url: ROOT + '/Estimate/Save/',
                 type: 'post',
                 data: {
                     items: rows
@@ -254,7 +254,7 @@
             that.dtgridEstimate.datagrid('loading', 'Формирование Excel файла...');
 
             $.ajax({
-                url: '/Estimate/CreateExcel',
+                url: ROOT + '/Estimate/CreateExcel',
                 type: 'post',
             }).done(function (data) {
 
