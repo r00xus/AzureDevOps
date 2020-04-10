@@ -43,7 +43,10 @@
                     },
                     {
                         field: 'diff', title: 'Разница', sortable: true, align: 'right',
-                        formatter: function (val) {
+                        formatter: function (val, row, index) {
+                            if (val < 0) {
+                                return '<span style="color:red">' + $.utils.formatHours(val) + '</span>';
+                            }
                             return $.utils.formatHours(val);
                         }
                     },
@@ -119,7 +122,7 @@
                         }
                     },
                     {
-                        field: 'taskName', title: 'Task Name', sortable: true,
+                        field: 'taskName', title: 'Task Name', sortable: true, width: 500
                     },
                     {
                         field: 'startDate', title: 'Start Date', sortable: true,
@@ -138,6 +141,9 @@
                     },
                     {
                         field: 'taskState', title: 'State', sortable: true,
+                        formatter: function (val) {
+                            return $.utils.renderState(val);
+                        }
                     },
                     {
                         field: 'completedWork', title: 'Completed Work', sortable: true, align: 'right',
@@ -150,6 +156,10 @@
                         formatter: function (val) {
                             return $.utils.formatHours(val);
                         }
+                    },
+                    { field: 'serviceName', title: 'ServiceName', sortable: true },
+                    {
+                        field: 'projectOnlineName', title: 'Проект ProjectOnline', sortable: true
                     },
                 ]],
                 onLoadSuccess: function () {
@@ -177,7 +187,7 @@
                             return $.utils.renderIcon('ico-activity', 'Активность') + '&nbsp' + $.utils.renderWorkItemLink(val);
                         }
                     },
-                    { field: 'ActivityName', title: 'ActivityName', sortable: true },
+                    { field: 'ActivityName', title: 'ActivityName', sortable: true, width: 500 },
                     {
                         field: 'TargetDate', title: 'TargetDate', sortable: true,
                         formatter: function (val) {
@@ -191,7 +201,7 @@
                             return $.utils.renderIcon('ico-task', 'Задача') + '&nbsp' + $.utils.renderWorkItemLink(val);
                         }
                     },
-                    { field: 'TaskName', title: 'TaskName', sortable: true },
+                    { field: 'TaskName', title: 'TaskName', sortable: true, width: 500 },
                     {
                         field: 'StartDate', title: 'StartDate', sortable: true,
                         formatter: function (val) {
@@ -290,7 +300,7 @@
 
             var params = that._getParams();
 
-            that.panelReports.panel('loading', 'Выборка данных');
+            that.panelReports.panel('loading', 'Выборка данных...');
 
             $.ajax({
                 url: ROOT + '/Home/DevOpsReport/',
@@ -302,6 +312,12 @@
                 success: function (data) {
 
                     var result = JSON.parse(data);
+
+                    if (!result.success) {
+                        $.utils.showError(result);
+                        that.panelReports.panel('loaded');
+                        return;
+                    }
 
                     that.dtgridActivity.datagrid('loadData', result.activity);
                     that.dtgridDiff.datagrid('loadData', result.diff);

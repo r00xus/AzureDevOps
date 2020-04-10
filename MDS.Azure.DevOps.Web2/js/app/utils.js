@@ -92,6 +92,40 @@
                     }
                 });
 
+                // DataGrid
+                $.extend($.fn.datagrid.defaults, {
+                    loader: function (param, success, error) {
+
+                        var opts = $(this).datagrid('options');
+
+                        if (!opts.url) return false;
+
+                        $.ajax({
+                            type: opts.method,
+                            url: opts.url,
+                            data: param,
+                            dataType: 'json',
+                            success: function (result) {
+
+                                if (result.success == false) {
+                                    this.showError(result);
+                                    success({
+                                        total: 0,
+                                        rows: []
+                                    });
+                                }
+
+                                success(result);
+                            },
+                            error: function (jqXHR, textStatus) {
+                                this.showAjaxError(jqXHR, textStatus);
+                                error.apply(this, arguments);
+                            }
+                        });
+
+                    }
+                });
+
             },
 
             // Форматирование часов
@@ -148,6 +182,65 @@
                 }).appendTo(result);
 
                 return result.html();
+            },
+
+            renderState: function (state) {
+
+                switch (state) {
+                    case 'Active':
+                        return this.renderIcon('ico-state-active') + '&nbsp' + state;
+                    case 'Closed':
+                        return this.renderIcon('ico-state-closed') + '&nbsp' + state;
+                    case 'Proposed':
+                        return this.renderIcon('ico-state-proposed') + '&nbsp' + state;
+                    default:
+                        return state;
+                }
+            },
+
+            // Вывод ошибки AJAX запроса
+            showAjaxError: function (jqXHR, textStatus) {
+
+                var params = {
+                    title: 'Ошибка',
+                    icon: 'error'
+                };
+
+                if (jqXHR.status === 0) {
+                    params.msg = 'Нет соединения с сервером';
+                    params.icon = undefined;
+                } else if (jqXHR.status == 404) {
+                    params.msg = 'Запрашиваемый ресурс не найден. [404]';
+                } else if (jqXHR.status == 500) {
+                    params.msg = 'Внутренняя ошибка сервера [500]';
+                } else {
+                    params.msg = 'Произошла ошибка. ' + textStatus + ' [' + jqXHR.status + ']'
+                }
+
+                $.messager.alert(params);
+            },
+
+            // Вывод ошибки
+            showError: function (result) {
+
+                // Если просто ошибка
+                if (result.error !== undefined) {
+                    $.messager.alert({
+                        title: 'Ошибка',
+                        icon: 'error',
+                        width: 400,
+                        msg: result.error
+                    });
+                }
+                // Если исключение
+                else if (result.exception !== undefined) {
+                    $.messager.alert({
+                        title: 'Ошибка',
+                        icon: 'error',
+                        width: 400,
+                        msg: 'Во время выполнения возникло исключение:</br>' + result.exception
+                    });
+                }
             }
         }
     });

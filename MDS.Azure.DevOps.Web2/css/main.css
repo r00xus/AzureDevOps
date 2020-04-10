@@ -1,9 +1,4 @@
-﻿body {
-    font-family: Arial;
-    font-size: 10px;
-}
-
-.separator {
+﻿.separator {
     display: inline-block;
     width: 0;
     height: 22px;

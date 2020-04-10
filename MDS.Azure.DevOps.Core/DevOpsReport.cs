@@ -3,6 +3,7 @@ using MDS.Azure.DevOps.Core.Models.Config;
 using MDS.Azure.DevOps.Models;
 using MDS.Azure.DevOps.Reader;
 using MDS.Azure.DevOps.Reader.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,9 +24,14 @@ namespace MDS.Azure.DevOps.Core
 
     public class DevOpsReport
     {
-        public DevOpsReport(ConfigBase config)
+        public DevOpsReport(ConfigBase config, List<WICustomField> customFields = null)
         {
             _config = config;
+
+            if (customFields != null)
+            {
+                _customFields = customFields;
+            }
         }
 
         public void ExecMainReport(DevOpsReportParams @params)
@@ -45,10 +51,22 @@ namespace MDS.Azure.DevOps.Core
             CreateTaskEstimateReport();
         }
 
+        public void FillCustomFields()
+        {
+            foreach (var activity in Activities)
+            {
+                var customField = _customFields.FirstOrDefault(x => x.Id == activity.Task?.Id);
+
+                if (customField == null) continue;
+
+                activity.Task.ProjectOnlineName = customField?.ProjectOnlineName;
+            }
+        }
+
         private DevOpsReportParams _params { get; set; }
 
         private ConfigBase _config { get; set; }
-
+        private List<WICustomField> _customFields { get; set; } = new List<WICustomField>();
         private List<TaskEstimate> _taskEstimates { get; set; }
 
         public List<WIActivityDto> Activities { get; set; }
@@ -70,6 +88,13 @@ namespace MDS.Azure.DevOps.Core
             var reader = new DevOpsReader(AzureUrl);
 
             Activities = reader.GetActivities(_params.Employees, _params.Start, _params.End);
+
+            FillCustomFields();
+        }
+
+        private string DeleteHtmlTags(string val)
+        {
+            return Regex.Replace(HttpUtility.HtmlDecode(val), @"<[^>]+>|&nbsp;", "").Trim();
         }
 
         private void CreateActivityReport()
@@ -90,7 +115,7 @@ namespace MDS.Azure.DevOps.Core
                 reportItem.FinishDate = item.Task.FinishDate;
                 reportItem.TargetDate = item.TargetDate;
                 if (!string.IsNullOrWhiteSpace(item.Task.mdsTaskDescription1))
-                    reportItem.ServiceName = Regex.Replace(HttpUtility.HtmlDecode(item.Task.mdsTaskDescription1), @"<[^>]+>|&nbsp;", "").Trim();
+                    reportItem.ServiceName = DeleteHtmlTags(item.Task.mdsTaskDescription1);
                 reportItem.Technology = item.Task.mdsTaskDescription2;
                 reportItem.WorkType = item.Task.mdsTaskWorkType;
                 reportItem.Company = item.Task.mdsTaskActive;
@@ -100,6 +125,8 @@ namespace MDS.Azure.DevOps.Core
                 reportItem.TaskState = item.Task.State;
                 reportItem.AreaPath = item.AreaPath;
                 reportItem.OriginalEstimate = item.Task.OriginalEstimate;
+                reportItem.ProjectOnlineName = item.Task.ProjectOnlineName;
+
 
                 ActivityReport.Add(reportItem);
             }
@@ -126,7 +153,8 @@ namespace MDS.Azure.DevOps.Core
                 x.Company,
                 x.WorkType,
                 x.AreaPath,
-                x.Month
+                x.Month,
+                x.ProjectOnlineName
 
             });
 
@@ -149,6 +177,7 @@ namespace MDS.Azure.DevOps.Core
                 item.Month = task.Key.Month;
                 item.Company = task.Key.Company;
                 item.OriginalEstimate = task.Key.OriginalEstimate;
+                item.ProjectOnlineName = task.Key.ProjectOnlineName;
 
                 TaskReport.Add(item);
             }

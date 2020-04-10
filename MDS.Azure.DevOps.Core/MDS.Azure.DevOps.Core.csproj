@@ -55,6 +55,7 @@
     <Compile Include="Models\Config\CustomDay.cs" />
     <Compile Include="Models\Config\Employee.cs" />
     <Compile Include="Models\Config\SpecialDay.cs" />
+    <Compile Include="Models\WICustomField.cs" />
     <Compile Include="Models\RIActivity.cs" />
     <Compile Include="Models\RITask.cs" />
     <Compile Include="Models\RITaskEstimate.cs" />

@@ -59,5 +59,8 @@ namespace MDS.Azure.DevOps.Models
         [FieldInfo(NoDisplay = true)]
         [DataMember(Name = "originalEstimate")]
         public decimal OriginalEstimate { get; set; }
+
+        [DataMember(Name = "projectOnlineName")]
+        public string ProjectOnlineName { get; set; }
     }
 }

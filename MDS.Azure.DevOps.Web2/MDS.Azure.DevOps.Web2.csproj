@@ -277,6 +277,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\ExceptionResult.cs" />
     <Compile Include="ActionResults\JsonNetResult.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -285,11 +286,13 @@
     <Compile Include="Controllers\EstimateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="CustomModelBinders\DecimalModelBinder.cs" />
     <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\TmpFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -814,6 +817,9 @@
     <Content Include="img\icons\excel.png" />
     <Content Include="img\icons\refresh.png" />
     <Content Include="img\icons\save.png" />
+    <Content Include="img\icons\state_active.png" />
+    <Content Include="img\icons\state_closed.png" />
+    <Content Include="img\icons\state_proposed.png" />
     <Content Include="img\icons\task.png" />
     <Content Include="js\app\estimate\panelEstimate.js" />
     <Content Include="js\app\main\panelMain.js" />
@@ -927,6 +933,7 @@
     <Content Include="css\easyui\themes\material-teal\images\Thumbs.db" />
     <Content Include="appdata\config.json" />
     <Content Include="appdata\taskEstimate.json" />
+    <Content Include="appdata\workItemCustomFields.json" />
     <None Include="js\lib\jquery\jquery-1.10.2.intellisense.js">
       <DependentUpon>jquery-1.10.2.js</DependentUpon>
     </None>
@@ -990,7 +997,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Settings\_panelEmployee.cshtml" />
     <Content Include="Views\Settings\_panelSettings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

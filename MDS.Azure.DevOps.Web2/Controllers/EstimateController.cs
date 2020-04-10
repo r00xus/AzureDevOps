@@ -4,6 +4,7 @@ using MDS.Azure.DevOps.Core.Models.Config;
 using MDS.Azure.DevOps.Excel;
 using MDS.Azure.DevOps.Web.Controllers;
 using MDS.Azure.DevOps.Web2.ActionResults;
+using MDS.Azure.DevOps.Web2.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -71,7 +72,11 @@ namespace MDS.Azure.DevOps.Web2.Controllers
 
             var key = $"Execl{Guid.NewGuid().ToString()}";
 
-            TempData[key] = bytes;
+            TempData[key] = new TmpFile
+            {
+                FileName = "Оценка задач.xlsx",
+                Content = bytes
+            };
 
             return new JsonNetResult
             {

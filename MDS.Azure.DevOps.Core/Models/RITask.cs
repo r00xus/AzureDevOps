@@ -71,8 +71,12 @@ namespace MDS.Azure.DevOps.Models
         [DataMember(Name = "serviceType")]
         public string ServiceType { get; set; }
 
-        [FieldInfo(NoDisplay = true)]
+        [FieldInfo(Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Title = "Original Estimate")]
         [DataMember(Name = "originalEstimate")]
         public decimal OriginalEstimate { get; set; }
+
+        [FieldInfo(Title = "Проект Project Online")]
+        [DataMember(Name = "projectOnlineName")]
+        public string ProjectOnlineName { get; set; }
     }
 }

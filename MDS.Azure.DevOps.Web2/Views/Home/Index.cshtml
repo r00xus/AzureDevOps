@@ -1,9 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Отчеты";
 }
+
 <div class="easyui-layout" fit="true">
 
-    <div region="west" title="Параметры" split="true" collapsible="false" style="width:300px; padding:10px;">
+    <div region="west" title="Параметры" split="true" style="width:300px; padding:10px;">
 
         <div class="easyui-layout" fit="true">
             <div region="north" border="false">
@@ -20,7 +21,7 @@
         </div>
     </div>
 
-    <div id="panelReports" region="center" title="Отчеты по сотрудникам">
+    <div id="panelReports" region="center" title="Аналитический отчет">
         <div class="easyui-layout" fit="true" border="false">
             <div region="north" class="datagrid-toolbar" height="auto" style="padding:5px;">
                 <a id="btnRefresh" href="#" class="easyui-linkbutton" plain="true">Выполинть</a>

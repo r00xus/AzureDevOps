@@ -107,7 +107,10 @@
                         field: 'taskName', title: 'Название Task', sortable: true, width: 370,
                     },
                     {
-                        field: 'state', title: 'State', sortable: true
+                        field: 'state', title: 'State', sortable: true, width: 100,
+                        formatter: function (val) {
+                            return $.utils.renderState(val);
+                        }
                     },
                     {
                         field: 'start', title: 'Start', sortable: true,
@@ -262,7 +265,7 @@
 
                 that.dtgridEstimate.datagrid('loaded');
 
-                window.location.href = '/Home/GetExcel?key=' + result.key;
+                window.location.href = ROOT + '/Home/GetExcel?key=' + result.key;
             });
         }
     });

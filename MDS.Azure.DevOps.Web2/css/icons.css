@@ -21,3 +21,15 @@
 .ico-activity {
     background: url('../img/icons/activity.png') no-repeat center center;
 }
+
+.ico-state-closed {
+    background: url('../img/icons/state_closed.png') no-repeat center center;
+}
+
+.ico-state-active {
+    background: url('../img/icons/state_active.png') no-repeat center center;
+}
+
+.ico-state-proposed {
+    background: url('../img/icons/state_proposed.png') no-repeat center center;
+}

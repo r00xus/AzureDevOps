@@ -93,6 +93,7 @@ namespace MDS.Azure.DevOps.Reader
                 item.mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString();
                 item.mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString();
                 item.mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString();
+                item.Description = workItem.Fields["Description"].Value.ToString();
 
 
                 if (workItem.Fields["Original Estimate"].Value != null)
@@ -142,8 +143,9 @@ namespace MDS.Azure.DevOps.Reader
                     mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString(),
                     mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString(),
                     mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString(),
-                    OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value)
-                });
+                    OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value),
+                    Description = workItem.Fields["Description"].Value.ToString()
+            });
             }
 
             foreach (var link in links)
