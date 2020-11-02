@@ -1000,13 +1000,14 @@
     <Content Include="Views\Settings\_panelEmployee.cshtml" />
     <Content Include="Views\Settings\_panelSettings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Estimate\Index.cshtml" />
     <Content Include="Views\Estimate\_panelEstimate.cshtml" />
-    <None Include="Properties\PublishProfiles\Prod.pubxml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_root.cshtml" />
+    <None Include="Properties\PublishProfiles\mds-devops-analytics - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mds-devops-analytics - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mds-devops-analytics - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

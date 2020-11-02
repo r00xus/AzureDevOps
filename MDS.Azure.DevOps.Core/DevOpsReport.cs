@@ -126,6 +126,7 @@ namespace MDS.Azure.DevOps.Core
                 reportItem.AreaPath = item.AreaPath;
                 reportItem.OriginalEstimate = item.Task.OriginalEstimate;
                 reportItem.ProjectOnlineName = item.Task.ProjectOnlineName;
+           
 
 
                 ActivityReport.Add(reportItem);

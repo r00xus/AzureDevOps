@@ -63,19 +63,19 @@ namespace MDS.Azure.DevOps.Models
         [DataMember(Name = "month")]
         public string Month { get; set; }
 
-        [FieldInfo(Title = "Должность")]
-        [DataMember(Name = "position")]
-        public string Position { get; set; }
-
         [FieldInfo(Title = "Тип услуги")]
         [DataMember(Name = "serviceType")]
         public string ServiceType { get; set; }
+
+        [FieldInfo(Title = "Должность")]
+        [DataMember(Name = "position")]
+        public string Position { get; set; }
 
         [FieldInfo(Format = "#,##0.00", HorizontalAlignment = HorizontalAlignmentValues.Right, Title = "Original Estimate")]
         [DataMember(Name = "originalEstimate")]
         public decimal OriginalEstimate { get; set; }
 
-        [FieldInfo(Title = "Проект Project Online")]
+        [FieldInfo(Title = "Проект Project Online", NoDisplay = true)]
         [DataMember(Name = "projectOnlineName")]
         public string ProjectOnlineName { get; set; }
     }

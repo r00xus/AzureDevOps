@@ -96,6 +96,9 @@
                     {
                         field: 'diff', title: 'Разница', align: 'right', sortable: true,
                         formatter: function (val) {
+                            if (val < 0) {
+                                return '<span style="color:red">' + $.utils.formatHours(val) + '</span>';
+                            }
                             return $.utils.formatHours(val);
                         }
                     }
@@ -166,6 +169,42 @@
                     $.utils.setWorkItemLinks($(this).datagrid('getPanel'));
                 }
             });
+
+            that.dtgridTask.datagrid('enableFilter', [
+                {
+                    field: 'taskState',
+                    type: 'combobox',
+                    options: {
+                        data: [
+                            {
+                                iconCls: 'ico-state-active',
+                                value: 'Active',
+                                text: 'Active'
+                            },
+                            {
+                                iconCls: 'ico-state-closed',
+                                value: 'Closed',
+                                text: 'Closed'
+                            },
+                            {
+                                iconCls: 'ico-state-proposed',
+                                value: 'Proposed',
+                                text: 'Proposed'
+                            }
+                        ],
+                        panelHeight: 'auto',
+                        showItemIcon: true,
+                    },
+                },
+                {
+                    field: 'startDate',
+                    type: 'datebox',
+                },
+                {
+                    field: 'taskName',
+                    type: 'combobox',
+                }
+            ]);
 
         },
 
