@@ -5,8 +5,6 @@ using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using Microsoft.VisualStudio.Services.Common;
 
 namespace MDS.Azure.DevOps.Reader
 {
@@ -24,13 +22,13 @@ namespace MDS.Azure.DevOps.Reader
 
         private WorkItemStore CreateItemStore()
         {
-            var networkCredentials = new NetworkCredential("ruslan.runchev", "December2020", "metinvest");
+            //var networkCredentials = new NetworkCredential("ruslan.runchev", "December2020", "metinvest");
 
-            var windowsCredentials = new Microsoft.VisualStudio.Services.Common.WindowsCredential(networkCredentials);
+            //var windowsCredentials = new Microsoft.VisualStudio.Services.Common.WindowsCredential(networkCredentials);
 
-            VssCredentials basicCredentials = new VssCredentials(windowsCredentials);
+            //VssCredentials basicCredentials = new VssCredentials(windowsCredentials);
 
-            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(_tfsUrl), basicCredentials);
+            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(_tfsUrl));
 
             tpc.EnsureAuthenticated();
 
