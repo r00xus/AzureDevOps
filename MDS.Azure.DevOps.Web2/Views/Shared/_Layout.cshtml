@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/png" />
+    <title>@ViewData["Title"] - MDS DevOps</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 10px !important;
+        }
+    </style>
+    <link href="~/css/easyui/themes/material-teal/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/easyui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/easyui/themes/color.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/icons.css" rel="stylesheet" />
+
+    <script src="~/js/lib/jquery/jquery-1.10.2.min.js"></script>
+    <script src="~/js/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/lib/jquery.cookie/jquery.cookie.js"></script>
+    <script src="~/js/lib/easyui/jquery.easyui.min.js"></script>
+    <script src="~/js/lib/easyui/locale/easyui-lang-ru.js"></script>
+    <script src="~/js/lib/easyui/extensions/datagrid-cellediting.js"></script>
+    <script src="~/js/lib/easyui/extensions/datagrid-filter.js"></script>
+    <script src="~/js/lib/momentjs/moment-with-locales.min.js"></script>
+    <script src="~/js/lib/numeraljs/numeral.min.js"></script>
+    <script src="~/js/lib/numeraljs/locales.min.js"></script>
+    <script src="~/js/app/utils.js"></script>
+
+    <script src="~/js/app/settings/panelSettings.js"></script>
+    <script src="~/js/app/settings/panelEmployee.js"></script>
+    <script src="~/js/app/main/panelMain.js"></script>
+    <script src="~/js/app/estimate/panelEstimate.js"></script>
+
+    @Html.Partial("_root")
+
+</head>
+<body class="easyui-layout" fit="true">
+    <div region="north" border="false" style="padding:10px;">
+        <img src="~/img/azure-logo.svg" height="30" object-fit="cover" style="vertical-align:middle; display:inline-block; margin-right:5px;">
+        <a href="@Url.Action("Index", "Home")" plain="true" class="easyui-linkbutton">Отработанное время</a>
+        <a href="@Url.Action("Index", "Settings")" plain="true" class="easyui-linkbutton">Настройки</a>
+    </div>
+    <div region="center" border="false">
+        @RenderBody()
+    </div>
+
+    <script type="text/javascript">
+        $.utils.init();
+    </script>
+</body>
+</html>

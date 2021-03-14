@@ -22,7 +22,15 @@ namespace MDS.Azure.DevOps.Reader
 
         private WorkItemStore CreateItemStore()
         {
+            //var networkCredentials = new NetworkCredential("ruslan.runchev", "December2020", "metinvest");
+
+            //var windowsCredentials = new Microsoft.VisualStudio.Services.Common.WindowsCredential(networkCredentials);
+
+            //VssCredentials basicCredentials = new VssCredentials(windowsCredentials);
+
             var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(_tfsUrl));
+
+            tpc.EnsureAuthenticated();
 
             WorkItemStore workItemStore = new WorkItemStore(tpc);
 
@@ -32,6 +40,10 @@ namespace MDS.Azure.DevOps.Reader
 
         public List<WIActivityDto> GetActivities(List<string> persons, DateTime dateStart, DateTime? dateEnd)
         {
+            var result = new List<WIActivityDto>();
+
+            if (persons.Count == 0) return result;
+
             var queryStr = WIQL.GetActivity.Replace("@persons", string.Join(",", persons.Select(x => $"'{x}'")));
             queryStr = queryStr.Replace("@dateFrom", dateStart.ToString("yyyy-MM-dd"));
             DateTime dateTo = dateEnd ?? DateTime.Now.Date;
@@ -40,8 +52,6 @@ namespace MDS.Azure.DevOps.Reader
             var query = new Query(_workItemStore, queryStr);
 
             WorkItemCollection workItems = query.RunQuery();
-
-            var result = new List<WIActivityDto>();
 
             foreach (WorkItem workItem in workItems)
             {
@@ -65,8 +75,51 @@ namespace MDS.Azure.DevOps.Reader
             return result;
         }
 
+        public List<WITaskDto> GetTasks(List<int> taskIds)
+        {
+            var result = new List<WITaskDto>();
+
+            if (taskIds.Count == 0) return result;
+
+            var queryStr = WIQL.GetTasksById.Replace("@id", string.Join(",", taskIds.Select(x => $"'{x}'")));
+
+            var query = new Query(_workItemStore, queryStr);
+
+            WorkItemCollection workItems = query.RunQuery();
+
+            foreach (WorkItem workItem in workItems)
+            {
+                var item = new WITaskDto();
+
+
+                item.Id = (int)workItem.Fields["ID"].Value;
+                item.Name = workItem.Fields["Title"].Value.ToString();
+                item.FinishDate = (DateTime?)workItem.Fields["Finish Date"].Value;
+                item.State = workItem.Fields["State"].Value.ToString();
+                item.StartDate = (DateTime?)workItem.Fields["Start Date"].Value;
+                item.mdsTaskDescription1 = workItem.Fields["mdsTaskDescription1"].Value.ToString();
+                item.mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString();
+                item.mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString();
+                item.mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString();
+                item.Description = workItem.Fields["Description"].Value.ToString();
+
+
+                if (workItem.Fields["Original Estimate"].Value != null)
+                    item.OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value);
+
+                if (workItem.Fields["Completed Work"].Value != null)
+                    item.CompletedWork = Convert.ToDecimal(workItem.Fields["Completed Work"].Value);
+
+                result.Add(item);
+            }
+
+            return result;
+        }
+
         private void GetTasks(List<WIActivityDto> activites)
         {
+            if (activites.Count == 0) return;
+
             var queryStr = WIQL.GetTaskLinks.Replace("@activityId", string.Join(",", activites.Select(x => x.Id)));
 
             Query wiQuery = new Query(_workItemStore, queryStr);
@@ -98,6 +151,8 @@ namespace MDS.Azure.DevOps.Reader
                     mdsTaskDescription2 = workItem.Fields["mdsTaskDescription2"].Value.ToString(),
                     mdsTaskWorkType = workItem.Fields["mdsTaskWorkType"].Value.ToString(),
                     mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString(),
+                    OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value),
+                    Description = workItem.Fields["Description"].Value.ToString()
                 });
             }
 

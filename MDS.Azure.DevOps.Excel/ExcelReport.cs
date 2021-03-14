@@ -254,7 +254,7 @@ namespace MDS.Azure.DevOps.Excel
                 rstType.AppendText(criteria[key], valueFont);
 
                 Document.SetCellValue(LineNum, 1, rstType.ToInlineString());
-                
+
                 Document.MergeWorksheetCells(LineNum, 1, LineNum, width);
                 LineNum++;
             }
@@ -271,6 +271,8 @@ namespace MDS.Azure.DevOps.Excel
                 var attr = type.GetAttributeFromType<FieldInfoAttribute>(propery.Name);
 
                 if (attr == null) attr = new FieldInfoAttribute();
+
+                if (attr.NoDisplay) continue;
 
                 if (attr.Title == null)
                     attr.Title = propery.Name;

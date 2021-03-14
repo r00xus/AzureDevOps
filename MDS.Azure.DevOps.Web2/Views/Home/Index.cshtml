@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Отработанное время";
+}
+
+<div class="easyui-layout" fit="true">
+
+    <div region="west" title="Параметры" split="true" style="width:300px; padding:10px;">
+
+        <div class="easyui-layout" fit="true">
+            <div region="north" border="false">
+                <label style="display:block; margin-bottom:10px;">Период</label>
+                <div style="display:inline-block; width:50%;">
+                    <input id="dboxDateFrom" class="easyui-datebox" prompt="c" style="width:100%;" />
+                </div><div style="display:inline-block; width:50%; padding-left:10px;">
+                    <input id="dboxDateTo" class="easyui-datebox" prompt="по" style="width:100%;" />
+                </div>
+            </div>
+            <div region="center" border="false" style="padding-top:10px;">
+                <table id="dtgridEmployees" fit="true" cssCls="lines-no"></table>
+            </div>
+        </div>
+    </div>
+
+    <div id="panelReports" region="center">
+        <div class="easyui-layout" fit="true" border="false">
+            <div region="north" class="datagrid-toolbar" height="auto" style="padding:5px;">
+                <a id="btnRefresh" href="#" class="easyui-linkbutton" plain="true">Выполинть</a>
+                <span class="separator"></span>
+                <a id="btnExcel" href="#" class="easyui-linkbutton" plain="true">Выгрузить в Excel</a>
+            </div>
+            <div region="center" border="false">
+                <div class="easyui-tabs" fit="true">
+                    @*Активности*@
+                    <div title="Активности" style="padding:10px;">
+                        <table id="dtgridActivity" fit="true"></table>
+                    </div>
+                    @*Задачи c активностями*@
+                    <div title="Задачи c активностями" style="padding:10px;">
+                        <table id="dtgridTask" fit="true"></table>
+                    </div>
+                    @*Отработанное время*@
+                    <div title="Отработанное время" style="padding:10px;">
+                        <table id="dtgridTime" fit="true"></table>
+                    </div>
+                    @*Расхождения с графиком*@
+                    <div title="Расхождения с графиком" style="padding:10px;">
+                        <table id="dtgridDiff" fit="true"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('body').panelMain();
+    });
+
+</script>

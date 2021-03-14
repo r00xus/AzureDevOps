@@ -31,11 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,11 +50,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig.cs" />
+    <Compile Include="DevOpsReport.cs" />
+    <Compile Include="Models\Config\ConfigBase.cs" />
+    <Compile Include="Models\Config\CustomDay.cs" />
+    <Compile Include="Models\Config\Employee.cs" />
+    <Compile Include="Models\Config\SpecialDay.cs" />
+    <Compile Include="Models\WICustomField.cs" />
+    <Compile Include="Models\RIActivity.cs" />
+    <Compile Include="Models\RITask.cs" />
+    <Compile Include="Models\RITaskEstimate.cs" />
+    <Compile Include="Models\RIWorkingTime.cs" />
+    <Compile Include="Models\RIWorkingTimeDiff.cs" />
+    <Compile Include="Models\Config\TaskEstimate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedual.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDS.Azure.DevOps.Excel\MDS.Azure.DevOps.Excel.csproj">
+      <Project>{c67b9889-ff85-4d84-9d62-f7d1cb79401a}</Project>
+      <Name>MDS.Azure.DevOps.Excel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDS.Azure.DevOps.Reader\MDS.Azure.DevOps.Reader.csproj">
+      <Project>{3a464ec6-87aa-4a8b-850a-16b47841af6d}</Project>
+      <Name>MDS.Azure.DevOps.Reader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

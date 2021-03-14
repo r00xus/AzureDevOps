@@ -127,4 +127,7 @@
   <data name="GetTasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>WIQL\GetTasks.wiql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="GetTasksById" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WIQL\GetTasksById.wiql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Настройки";
+}
+
+
+<div class="easyui-layout" fit="true">
+    <div id="panelSettings" region="center" title="Настройки">
+        @Html.Partial("~/Views/Settings/_panelSettings.cshtml")
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#panelSettings').panelSettings();
+    });
+
+</script>

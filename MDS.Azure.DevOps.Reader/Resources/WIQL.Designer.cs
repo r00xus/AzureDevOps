@@ -66,9 +66,11 @@ namespace MDS.Azure.DevOps.Reader.Resources {
         ///FROM
         ///  WorkItems
         ///WHERE
-        ///  [System.TeamProject] = &apos;UIS&apos; AND
-        ///  [System.WorkItemType] = &apos;Activity&apos; AND
-        ///  [System.AssignedTo] IN (@persons).
+        ///  [Team Project] = &apos;UIS&apos; AND
+        ///  [Work Item Type] = &apos;Activity&apos; AND
+        ///  [Assigned To] IN (@persons) AND
+        ///  [Target Date] &gt;= &apos;@dateFrom&apos; AND
+        ///  [Target Date] &lt;= &apos;@dateTo&apos;.
         /// </summary>
         internal static string GetActivity {
             get {
@@ -103,6 +105,20 @@ namespace MDS.Azure.DevOps.Reader.Resources {
         internal static string GetTasks {
             get {
                 return ResourceManager.GetString("GetTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///  *
+        ///FROM
+        ///  WorkItems
+        ///WHERE
+        ///  [System.Id] IN (@id).
+        /// </summary>
+        internal static string GetTasksById {
+            get {
+                return ResourceManager.GetString("GetTasksById", resourceCulture);
             }
         }
     }

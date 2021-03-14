@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Оценка времени";
+}
+
+
+<div class="easyui-layout" fit="true">
+    <div id="panelEstimate" region="center" title="Оценка времени">
+        @Html.Partial("~/Views/Estimate/_panelEstimate.cshtml")
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#panelEstimate').panelEstimate();
+    });
+
+</script>

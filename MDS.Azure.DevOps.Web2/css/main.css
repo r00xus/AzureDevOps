@@ -1,0 +1,17 @@
+﻿.separator {
+    display: inline-block;
+    width: 0;
+    height: 22px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #fff;
+    vertical-align: middle;
+}
+
+.workitem-link a {
+    color: inherit;
+}
+
+.lines-no .datagrid-body td {
+    border-right: 1px dotted transparent;
+    border-bottom: 1px dotted transparent;
+}
