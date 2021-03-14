@@ -5,6 +5,8 @@ using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using Microsoft.VisualStudio.Services.Common;
 
 namespace MDS.Azure.DevOps.Reader
 {
@@ -22,7 +24,15 @@ namespace MDS.Azure.DevOps.Reader
 
         private WorkItemStore CreateItemStore()
         {
-            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(_tfsUrl));
+            var networkCredentials = new NetworkCredential("ruslan.runchev", "December2020", "metinvest");
+
+            var windowsCredentials = new Microsoft.VisualStudio.Services.Common.WindowsCredential(networkCredentials);
+
+            VssCredentials basicCredentials = new VssCredentials(windowsCredentials);
+
+            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(_tfsUrl), basicCredentials);
+
+            tpc.EnsureAuthenticated();
 
             WorkItemStore workItemStore = new WorkItemStore(tpc);
 
@@ -145,7 +155,7 @@ namespace MDS.Azure.DevOps.Reader
                     mdsTaskActive = workItem.Fields["mdsTaskActive"].Value.ToString(),
                     OriginalEstimate = Convert.ToDecimal(workItem.Fields["Original Estimate"].Value),
                     Description = workItem.Fields["Description"].Value.ToString()
-            });
+                });
             }
 
             foreach (var link in links)
